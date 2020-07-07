@@ -1,0 +1,19 @@
+@import url("https://fonts.googleapis.com/css2?family=Cute+Font&display=swap");
+
+body {
+  font-family: "Cute Font", cursive !important;
+  background-color: rgb(228, 186, 190) !important;
+}
+
+h6,
+.MuiTypography-displayBlock,
+.MuiTab-root {
+  font-family: "Cute Font", cursive !important;
+  font-size: 1.675rem !important;
+  font-weight: 700 !important;
+  color: rgba(0, 0, 0, 0.54) !important;
+}
+
+.MuiListItem-root {
+  text-align: center !important;
+}

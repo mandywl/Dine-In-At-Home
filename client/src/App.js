@@ -1,11 +1,11 @@
 import React from "react";
-
-import Nav from "./components/Nav";
+import Recipes from "./pages/Recipes";
+import ResponsiveDrawer from "./components/Nav";
 
 function App() {
   return (
     <div>
-      <Nav />
+      <ResponsiveDrawer firstTab={<Recipes />} />
     </div>
   );
 }
