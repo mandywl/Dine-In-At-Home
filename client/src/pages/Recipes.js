@@ -74,7 +74,7 @@ export default function Recipe() {
         <IconButton aria-label="add to favorites">
           <FavoriteIcon />
         </IconButton>
-        <AwesomeButton type="primary" href="https://google.com" target="_blank">
+        <AwesomeButton type="link" href="https://google.com" target="_blank">
           Generate Shopping List
         </AwesomeButton>
         <IconButton
