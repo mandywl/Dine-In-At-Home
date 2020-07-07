@@ -56,7 +56,6 @@ export default function Recipe() {
           </IconButton>
         }
         title="Shrimp and Chorizo Paella"
-        subheader="September 14, 2016"
       />
       <CardMedia
         className={classes.media}
