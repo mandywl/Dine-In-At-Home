@@ -3,6 +3,9 @@
 body {
   font-family: "Cute Font", cursive !important;
   background-color: rgb(228, 186, 190) !important;
+  /* background-image: url("./assets/img/homepage_bg.jpg");
+  background-repeat: no-repeat;
+  background-size: cover; */
 }
 
 h6,
