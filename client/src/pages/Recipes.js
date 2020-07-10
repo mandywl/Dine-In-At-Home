@@ -16,11 +16,22 @@ import { AwesomeButton } from "react-awesome-button";
 import "react-awesome-button/dist/styles.css";
 import API from "../utils/API";
 import Grid from "@material-ui/core/Grid";
+import Image from "../assets/img/homepage_bg.png";
+import Paper from "@material-ui/core/Paper";
+import beefStroganoff from "../assets/img/beefStroganoff.jpg";
+import honeySoyChicken from "../assets/img/honeySoyChicken.jpg";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: 345,
   },
+  // paperContainer: {
+  //   // backgroundImage: `url(${Image})`,
+  //   backgroundColor: "rgb(228, 186, 190)",
+  //   // minHeight: "1300px",
+  //   // backgroundSize: "cover",
+  //   // margin: "0",
+  // },
   media: {
     height: 0,
     paddingTop: "56.25%", // 16:9
@@ -58,82 +69,76 @@ export default function Recipe() {
   }, []);
 
   return (
-    <>
-      <Grid container spacing={3}>
-        {recipes.map((recipe) => {
-          return (
-            <Grid item xs={12} sm={6} lg={3}>
-              <Card className={classes.root}>
-                <CardHeader
-                  action={
-                    <IconButton aria-label="settings">
-                      <MoreVertIcon />
-                    </IconButton>
-                  }
-                  title={recipe.title}
-                />
-                <CardMedia
-                  className={classes.media}
-                  image={`/static/media/${recipe.thumbnail}`}
-                  // image={honeySoyChicken}
-                  title="Paella dish"
-                />
+    // <Paper elevation={0} className={classes.paperContainer}>
+    <Grid container spacing={3}>
+      {recipes.map((recipe) => {
+        return (
+          <Grid item xs={12} sm={6} lg={3}>
+            <Card className={classes.root}>
+              <CardHeader
+                action={
+                  <IconButton aria-label="settings">
+                    <MoreVertIcon />
+                  </IconButton>
+                }
+                title={recipe.title}
+              />
+              <CardMedia
+                className={classes.media}
+                image={`/static/media/${recipe.thumbnail}`}
+                // image={honeySoyChicken}
+                title="Paella dish"
+              />
+              <CardContent>
+                <Typography variant="body2" color="textSecondary" component="p">
+                  {recipe.description}
+                </Typography>
+              </CardContent>
+              <CardActions disableSpacing>
+                <IconButton aria-label="add to favorites">
+                  <FavoriteIcon />
+                </IconButton>
+                <AwesomeButton
+                  type="link"
+                  href="https://google.com"
+                  target="_blank"
+                >
+                  Generate Shopping List
+                </AwesomeButton>
+                <IconButton
+                  className={clsx(classes.expand, {
+                    [classes.expandOpen]: expanded,
+                  })}
+                  onClick={handleExpandClick}
+                  aria-expanded={expanded}
+                  aria-label="show more"
+                >
+                  <ExpandMoreIcon />
+                </IconButton>
+              </CardActions>
+              <Collapse in={expanded} timeout="auto" unmountOnExit>
                 <CardContent>
-                  <Typography
-                    variant="body2"
-                    color="textSecondary"
-                    component="p"
-                  >
-                    {recipe.description}
-                  </Typography>
+                  <Typography paragraph>Ingrediates:</Typography>
+                  {Object.keys(recipe.ingrediates[0]).map((key, i) => {
+                    return (
+                      <Typography paragraph>
+                        {recipe.ingrediates[0][key]}
+                      </Typography>
+                    );
+                  })}
+                  <Typography paragraph>Methods:</Typography>
+                  {Object.keys(recipe.method[0]).map((key, i) => {
+                    return (
+                      <Typography paragraph>{recipe.method[0][key]}</Typography>
+                    );
+                  })}
                 </CardContent>
-                <CardActions disableSpacing>
-                  <IconButton aria-label="add to favorites">
-                    <FavoriteIcon />
-                  </IconButton>
-                  <AwesomeButton
-                    type="link"
-                    href="https://google.com"
-                    target="_blank"
-                  >
-                    Generate Shopping List
-                  </AwesomeButton>
-                  <IconButton
-                    className={clsx(classes.expand, {
-                      [classes.expandOpen]: expanded,
-                    })}
-                    onClick={handleExpandClick}
-                    aria-expanded={expanded}
-                    aria-label="show more"
-                  >
-                    <ExpandMoreIcon />
-                  </IconButton>
-                </CardActions>
-                <Collapse in={expanded} timeout="auto" unmountOnExit>
-                  <CardContent>
-                    <Typography paragraph>Ingrediates:</Typography>
-                    {Object.keys(recipe.ingrediates[0]).map((key, i) => {
-                      return (
-                        <Typography paragraph>
-                          {recipe.ingrediates[0][key]}
-                        </Typography>
-                      );
-                    })}
-                    <Typography paragraph>Methods:</Typography>
-                    {Object.keys(recipe.method[0]).map((key, i) => {
-                      return (
-                        <Typography paragraph>
-                          {recipe.method[0][key]}
-                        </Typography>
-                      );
-                    })}
-                  </CardContent>
-                </Collapse>
-              </Card>
-            </Grid>
-          );
-        })}
-      </Grid>
-    </>
+              </Collapse>
+            </Card>
+          </Grid>
+        );
+      })}
+    </Grid>
+    // </Paper>
   );
 }
