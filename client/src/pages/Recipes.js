@@ -1,37 +1,29 @@
 import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import clsx from "clsx";
 import Card from "@material-ui/core/Card";
 import CardHeader from "@material-ui/core/CardHeader";
 import CardMedia from "@material-ui/core/CardMedia";
 import CardContent from "@material-ui/core/CardContent";
 import CardActions from "@material-ui/core/CardActions";
-import Collapse from "@material-ui/core/Collapse";
 import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
 import FavoriteIcon from "@material-ui/icons/Favorite";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import { AwesomeButton } from "react-awesome-button";
 import "react-awesome-button/dist/styles.css";
 import API from "../utils/API";
 import Grid from "@material-ui/core/Grid";
-import Image from "../assets/img/homepage_bg.png";
+import Popper from "@material-ui/core/Popper";
+import Fade from "@material-ui/core/Fade";
 import Paper from "@material-ui/core/Paper";
 import beefStroganoff from "../assets/img/beefStroganoff.jpg";
 import honeySoyChicken from "../assets/img/honeySoyChicken.jpg";
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: 345,
   },
-  // paperContainer: {
-  //   // backgroundImage: `url(${Image})`,
-  //   backgroundColor: "rgb(228, 186, 190)",
-  //   // minHeight: "1300px",
-  //   // backgroundSize: "cover",
-  //   // margin: "0",
-  // },
   media: {
     height: 0,
     paddingTop: "56.25%", // 16:9
@@ -46,14 +38,23 @@ const useStyles = makeStyles((theme) => ({
   expandOpen: {
     transform: "rotate(180deg)",
   },
+  typography: {
+    padding: theme.spacing(2),
+    textDecoration: "none",
+    color: "#000000",
+  },
 }));
 
 export default function Recipe() {
   const classes = useStyles();
-  const [expanded, setExpanded] = React.useState(false);
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [open, setOpen] = React.useState(false);
+  const [placement, setPlacement] = React.useState();
 
-  const handleExpandClick = () => {
-    setExpanded(!expanded);
+  const handleClick = (newPlacement) => (event) => {
+    setAnchorEl(event.currentTarget);
+    setOpen((prev) => placement !== newPlacement || !prev);
+    setPlacement(newPlacement);
   };
 
   const [recipes, setRecipes] = useState([]);
@@ -69,76 +70,78 @@ export default function Recipe() {
   }, []);
 
   return (
-    // <Paper elevation={0} className={classes.paperContainer}>
-    <Grid container spacing={3}>
-      {recipes.map((recipe) => {
-        return (
-          <Grid item xs={12} sm={6} lg={3}>
-            <Card className={classes.root}>
-              <CardHeader
-                action={
-                  <IconButton aria-label="settings">
-                    <MoreVertIcon />
-                  </IconButton>
-                }
-                title={recipe.title}
-              />
-              <CardMedia
-                className={classes.media}
-                image={`/static/media/${recipe.thumbnail}`}
-                // image={honeySoyChicken}
-                title="Paella dish"
-              />
-              <CardContent>
-                <Typography variant="body2" color="textSecondary" component="p">
-                  {recipe.description}
-                </Typography>
-              </CardContent>
-              <CardActions disableSpacing>
-                <IconButton aria-label="add to favorites">
-                  <FavoriteIcon />
-                </IconButton>
-                <AwesomeButton
-                  type="link"
-                  href="https://google.com"
-                  target="_blank"
+    <>
+      <Grid container spacing={3}>
+        {recipes.map((recipe) => {
+          return (
+            <Grid item xs={12} sm={6} lg={3}>
+              <Card className={classes.root}>
+                <CardHeader
+                  action={
+                    <IconButton
+                      aria-label="settings"
+                      onClick={handleClick("right-start")}
+                    >
+                      <MoreVertIcon />
+                    </IconButton>
+                  }
+                  title={recipe.title}
+                />
+                <Popper
+                  open={open}
+                  anchorEl={anchorEl}
+                  placement={placement}
+                  transition
                 >
-                  Generate Shopping List
-                </AwesomeButton>
-                <IconButton
-                  className={clsx(classes.expand, {
-                    [classes.expandOpen]: expanded,
-                  })}
-                  onClick={handleExpandClick}
-                  aria-expanded={expanded}
-                  aria-label="show more"
-                >
-                  <ExpandMoreIcon />
-                </IconButton>
-              </CardActions>
-              <Collapse in={expanded} timeout="auto" unmountOnExit>
+                  {({ TransitionProps }) => (
+                    <Fade {...TransitionProps} timeout={350}>
+                      <Paper>
+                        <Typography
+                          component={Link}
+                          to={"/recipes/" + recipe._id}
+                          className={classes.typography}
+                        >
+                          Go to recipe!
+                        </Typography>
+                      </Paper>
+                    </Fade>
+                  )}
+                </Popper>
+
+                <CardMedia
+                  className={classes.media}
+                  component={Link}
+                  image={`/static/media/${recipe.thumbnail}`}
+                  // image={honeySoyChicken}
+                  to={"/recipes/" + recipe._id}
+                  title="Paella dish"
+                />
                 <CardContent>
-                  <Typography paragraph>Ingrediates:</Typography>
-                  {Object.keys(recipe.ingrediates[0]).map((key, i) => {
-                    return (
-                      <Typography paragraph>
-                        {recipe.ingrediates[0][key]}
-                      </Typography>
-                    );
-                  })}
-                  <Typography paragraph>Methods:</Typography>
-                  {Object.keys(recipe.method[0]).map((key, i) => {
-                    return (
-                      <Typography paragraph>{recipe.method[0][key]}</Typography>
-                    );
-                  })}
+                  <Typography
+                    variant="body2"
+                    color="textSecondary"
+                    component="p"
+                  >
+                    {recipe.description}
+                  </Typography>
                 </CardContent>
-              </Collapse>
-            </Card>
-          </Grid>
-        );
-      })}
-    </Grid>
-    // </Paper>
+                <CardActions disableSpacing>
+                  <IconButton aria-label="add to favorites">
+                    <FavoriteIcon />
+                  </IconButton>
+                  <AwesomeButton
+                    type="link"
+                    href="https://google.com"
+                    target="_blank"
+                  >
+                    Generate Shopping List
+                  </AwesomeButton>
+                </CardActions>
+              </Card>
+            </Grid>
+          );
+        })}
+      </Grid>
+    </>
   );
 }
