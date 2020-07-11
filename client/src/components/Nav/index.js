@@ -16,6 +16,7 @@ import { makeStyles, useTheme } from "@material-ui/core/styles";
 import Box from "@material-ui/core/Box";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
+import { Link } from "react-router-dom";
 
 const drawerWidth = 240;
 
@@ -171,8 +172,13 @@ function ResponsiveDrawer(props) {
             textColor="primary"
             aria-label="scrollable force tabs example"
           >
-            <Tab label="Dine In At Home" {...a11yProps(0)} />
-            <Tab label="Recipes" {...a11yProps(1)} />
+            <Tab
+              component={Link}
+              label="Dine In At Home"
+              to="/"
+              {...a11yProps(0)}
+            />
+            <Tab component={Link} label="Recipes" to="/" {...a11yProps(1)} />
             <Tab label="Shopping List" {...a11yProps(2)} />
             <Tab label="Contact Me" {...a11yProps(3)} />
             <Tab label="Item Five" {...a11yProps(4)} />
