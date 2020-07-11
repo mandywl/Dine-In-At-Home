@@ -179,7 +179,12 @@ function ResponsiveDrawer(props) {
               {...a11yProps(0)}
             />
             <Tab component={Link} label="Recipes" to="/" {...a11yProps(1)} />
-            <Tab label="Shopping List" {...a11yProps(2)} />
+            <Tab
+              component={Link}
+              label="Shopping List"
+              to="shopping"
+              {...a11yProps(2)}
+            />
             <Tab label="Contact Me" {...a11yProps(3)} />
             <Tab label="Item Five" {...a11yProps(4)} />
           </Tabs>
@@ -191,7 +196,7 @@ function ResponsiveDrawer(props) {
           {props.firstTab}
         </TabPanel>
         <TabPanel value={value} index={2}>
-          Item Three
+          {props.secondTab}
         </TabPanel>
         <TabPanel value={value} index={3}>
           Item Four
