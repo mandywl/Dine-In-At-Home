@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from "react";
 import Grid from "@material-ui/core/Grid";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import API from "../utils/API";
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Image from "material-ui-image";
 import Typography from "@material-ui/core/Typography";
 import ListItem from "@material-ui/core/ListItem";
-import List from "@material-ui/core/List";
 import ListItemText from "@material-ui/core/ListItemText";
 import beefStroganoff from "../assets/img/beefStroganoff.jpg";
 import honeySoyChicken from "../assets/img/honeySoyChicken.jpg";
@@ -32,7 +31,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function RecipeDetails() {
-  const [spacing, setSpacing] = React.useState(2);
   const classes = useStyles();
 
   const [recipe, setRecipe] = useState({});
