@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import List from "@material-ui/core/List";
@@ -11,6 +11,7 @@ import Checkbox from "@material-ui/core/Checkbox";
 import Button from "@material-ui/core/Button";
 import Divider from "@material-ui/core/Divider";
 import Typography from "@material-ui/core/Typography";
+import API from "../utils/API";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -50,11 +51,33 @@ function union(a, b) {
 export default function TransferList() {
   const classes = useStyles();
   const [checked, setChecked] = React.useState([]);
-  const [left, setLeft] = React.useState([0, 1, 2, 3, 4]);
-  const [right, setRight] = React.useState([]);
 
+  const [shoppinglist, setShoppingList] = useState([]);
+
+  const getShoppingList = () => {
+    API.getShoppingList()
+      // .then((res) => setShoppingList(res.data))
+      .then((res) =>
+        Object.keys(res.data).map((key) =>
+          setShoppingList(res.data[key].ingrediates)
+        )
+      )
+      .catch((err) => console.log(err));
+  };
+
+  useEffect(() => {
+    getShoppingList();
+  }, []);
+
+  const [left, setLeft] = React.useState([...shoppinglist]);
+  const [right, setRight] = React.useState([]);
   const leftChecked = intersection(checked, left);
   const rightChecked = intersection(checked, right);
+
+  shoppinglist.forEach(function (item, i) {
+    left.push(item);
+  });
+  console.log("left is, ", left);
 
   const handleToggle = (value) => () => {
     const currentIndex = checked.indexOf(value);
@@ -132,7 +155,7 @@ export default function TransferList() {
                   inputProps={{ "aria-labelledby": labelId }}
                 />
               </ListItemIcon>
-              <ListItemText id={labelId} primary={`List item ${value + 1}`} />
+              <ListItemText id={labelId} primary={`${value}`} />
             </ListItem>
           );
         })}

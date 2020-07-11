@@ -11,7 +11,7 @@ const recipeSeed = [
     description: "Ready in 35 minutes and serves 4 people.",
     ingrediates: [
       {
-        ingredient1: "800 potatoes",
+        ingredient1: "800 PATATOES",
         ingredient2: "1/4 salt",
         ingredient3: "1/4 milk",
         ingredient4: "2 Tbsp butter",
