@@ -3,6 +3,9 @@
 body {
   font-family: "Cute Font", cursive !important;
   background-color: rgb(228, 186, 190) !important;
+  background-image: url("./assets/img/homepage_bg.png");
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 h6,
@@ -11,9 +14,20 @@ h6,
   font-family: "Cute Font", cursive !important;
   font-size: 1.675rem !important;
   font-weight: 700 !important;
-  color: rgba(0, 0, 0, 0.54) !important;
+  /* color: rgba(0, 0, 0, 0.54) !important; */
+}
+
+.MuiTypography-body1 {
+  font-family: "Cute Font", cursive !important;
+  font-size: 1.475rem !important;
+  font-weight: 500 !important;
+  line-height: 0.7 !important;
 }
 
 .MuiListItem-root {
-  text-align: center !important;
+  /* text-align: center !important; */
+}
+
+.aws-btn {
+  font-size: 1.25rem;
 }
