@@ -67,9 +67,15 @@ export default function Recipe() {
 
   const createShoppingList = (ingrediates) => {
     console.log("Ingrediates are", ingrediates);
-    API.createShoppngList({
-      ingrediates: Object.values(ingrediates),
-    }).catch((err) => console.log(err));
+    Object.values(ingrediates).forEach((element, index) => {
+      console.log(element);
+      API.createShoppngList({
+        ingrediates: element,
+      }).catch((err) => console.log(err));
+    });
+    // API.createShoppngList({
+    //   ingrediates: Object.values(ingrediates),
+    // }).catch((err) => console.log(err));
   };
 
   useEffect(() => {
