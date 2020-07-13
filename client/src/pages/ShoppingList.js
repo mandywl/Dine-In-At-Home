@@ -55,34 +55,17 @@ export default function TransferList() {
   const [checked, setChecked] = React.useState([]);
   const [left, setLeft] = React.useState([]);
   const [right, setRight] = React.useState([]);
-  const leftChecked = intersection(checked, left);
-  const rightChecked = intersection(checked, right);
-
 
   useEffect(() => {
     API.getShoppingList()
       .then((res) => {
-        setLeft(res.data.map(x => ({...x, checked:false })));
+        setLeft(res.data.map((x) => ({ ...x, checked: false })));
       })
       .catch((err) => console.log(err));
   }, []);
 
-  const handleToggle = (value) => {
-    console.log("left handle, ", left);
-    console.log("handleToggle");
-    const currentIndex = checked.indexOf(value);
-    const newChecked = [...checked];
-
-    if (currentIndex === -1) {
-      newChecked.push(value);
-    } else {
-      newChecked.splice(currentIndex, 1);
-    }
-
-    setChecked(newChecked);
-  };
-
-  const numberOfChecked = (items) => intersection(checked, items.map(x => x.ingrediates)).length;
+  const numberOfChecked = (items) =>
+    items.map((x) => x.checked).filter(Boolean).length;
 
   const handleToggleAll = (items) => () => {
     console.log("handleToggleAll");
@@ -93,77 +76,67 @@ export default function TransferList() {
     }
   };
 
-  const handleCheckedRight = () => {
-    console.log("handleToggle");
-    setRight(right.concat(leftChecked));
-    setLeft(not(left, leftChecked));
-    setChecked(not(checked, leftChecked));
-  };
-
-  const handleCheckedLeft = () => {
-    console.log("handleCheckedLeft");
-    setLeft(left.concat(rightChecked));
-    setRight(not(right, rightChecked));
-    setChecked(not(checked, rightChecked));
-  };
-
   const customList = (title, items) => (
-    <Card>
-      <CardHeader
-        className={classes.cardHeader}
-        avatar={
-          <Checkbox
-            onClick={handleToggleAll(items)}
-            checked={
-              numberOfChecked(items) === items.length && items.length !== 0
-            }
-            indeterminate={
-              numberOfChecked(items) !== items.length &&
-              numberOfChecked(items) !== 0
-            }
-            disabled={items.length === 0}
-            inputProps={{ "aria-label": "all items selected" }}
-          />
-        }
-        action={
-          <IconButton aria-label="settings">
-            <DeleteForeverIcon />
-          </IconButton>
-        }
-        title={title}
-        subheader={`${numberOfChecked(items)}/${items.length} selected`}
-      />
-      <Divider />
-      <List className={classes.list} dense component="div" role="list">
-        {items.map((value, index) => {
-          const labelId = `transfer-list-all-item-${value.ingrediates}-label`;
+    console.log("items are ", items),
+    console.log("number of checked ", numberOfChecked(items)),
+    (
+      <Card>
+        <CardHeader
+          className={classes.cardHeader}
+          avatar={
+            <Checkbox
+              onClick={handleToggleAll(items)}
+              checked={
+                numberOfChecked(items) === items.length && items.length !== 0
+              }
+              indeterminate={
+                numberOfChecked(items) !== items.length &&
+                numberOfChecked(items) !== 0
+              }
+              disabled={items.length === 0}
+              inputProps={{ "aria-label": "all items selected" }}
+            />
+          }
+          action={
+            <IconButton aria-label="settings">
+              <DeleteForeverIcon />
+            </IconButton>
+          }
+          title={title}
+          subheader={`${numberOfChecked(items)}/${items.length} selected`}
+        />
+        <Divider />
+        <List className={classes.list} dense component="div" role="list">
+          {items.map((value, index) => {
+            const labelId = `transfer-list-all-item-${value.ingrediates}-label`;
 
-          return (
-            <ListItem
-              key={value.ingrediates + index}
-              role="listitem"
-              button
-              onClick={() => {
-                //debugger;
-                value.checked = !value.checked;
-                setLeft([...left]);
-              }}
-            >
-              <ListItemIcon>
-                <Checkbox
-                  checked={value.checked}
-                  tabIndex={-1}
-                  disableRipple
-                  inputProps={{ "aria-labelledby": labelId }}
-                />
-              </ListItemIcon>
-              <ListItemText id={labelId} primary={`${value.ingrediates}`} />
-            </ListItem>
-          );
-        })}
-        <ListItem />
-      </List>
-    </Card>
+            return (
+              <ListItem
+                key={value.ingrediates + index}
+                role="listitem"
+                button
+                onClick={() => {
+                  //debugger;
+                  value.checked = !value.checked;
+                  setLeft([...left]);
+                }}
+              >
+                <ListItemIcon>
+                  <Checkbox
+                    checked={value.checked}
+                    tabIndex={-1}
+                    disableRipple
+                    inputProps={{ "aria-labelledby": labelId }}
+                  />
+                </ListItemIcon>
+                <ListItemText id={labelId} primary={`${value.ingrediates}`} />
+              </ListItem>
+            );
+          })}
+          <ListItem />
+        </List>
+      </Card>
+    )
   );
 
   return (
@@ -186,10 +159,10 @@ export default function TransferList() {
               size="large"
               className={classes.button}
               onClick={() => {
-                setRight(right.concat(left.filter(x => x.checked)));
-                setLeft(left.filter(x => !x.checked));
+                setRight(right.concat(left.filter((x) => x.checked)));
+                setLeft(left.filter((x) => !x.checked));
               }}
-              disabled={left.filter(x => x.checked).length === 0}
+              disabled={left.filter((x) => x.checked).length === 0}
               aria-label="move selected right"
             >
               &gt;
@@ -199,10 +172,10 @@ export default function TransferList() {
               size="large"
               className={classes.button}
               onClick={() => {
-                setLeft(left.concat(right.filter(x => x.checked)));
-                setRight(right.filter(x => !x.checked));
+                setLeft(left.concat(right.filter((x) => x.checked)));
+                setRight(right.filter((x) => !x.checked));
               }}
-              disabled={right.filter(x => x.checked).length === 0}
+              disabled={right.filter((x) => x.checked).length === 0}
               aria-label="move selected left"
             >
               &lt;
