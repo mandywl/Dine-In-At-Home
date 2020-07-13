@@ -38,21 +38,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function not(a, b) {
-  return a.filter((value) => b.indexOf(value) === -1);
-}
-
-function intersection(a, b) {
-  return a.filter((value) => b.indexOf(value) !== -1);
-}
-
-function union(a, b) {
-  return [...a, ...not(b, a)];
-}
-
 export default function TransferList() {
   const classes = useStyles();
-  const [checked, setChecked] = React.useState([]);
   const [left, setLeft] = React.useState([]);
   const [right, setRight] = React.useState([]);
 
@@ -70,15 +57,19 @@ export default function TransferList() {
   const handleToggleAll = (items) => () => {
     console.log("handleToggleAll");
     if (numberOfChecked(items) === items.length) {
-      setChecked(not(checked, items));
+      items.map((x) => (x.checked = false));
+      setLeft([...left]);
     } else {
-      setChecked(union(checked, items));
+      items.map((x) => (x.checked = true));
+      setLeft([...left]);
     }
   };
 
   const customList = (title, items) => (
-    console.log("items are ", items),
+    //console.log("items are ", items),
     console.log("number of checked ", numberOfChecked(items)),
+    console.log("items length ", items.length),
+    console.log(numberOfChecked(items) === items.length && items.length !== 0),
     (
       <Card>
         <CardHeader
