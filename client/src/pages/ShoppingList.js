@@ -68,6 +68,7 @@ export default function TransferList() {
   const classes = useStyles();
   const [left, setLeft] = React.useState([]);
   const [right, setRight] = React.useState([]);
+  const [formObject, setFormObject] = useState({});
 
   const numberOfChecked = (items) =>
     items.map((x) => x.checked).filter(Boolean).length;
@@ -109,8 +110,17 @@ export default function TransferList() {
     });
   };
 
-  const addShoppingItem = (item) => () => {
-    console.log("hi");
+  const addShoppingItem = () => {
+    console.log("add shopping");
+    console.log(formObject.value);
+    if (formObject) {
+      API.createShoppngList({
+        ingrediates: formObject.value,
+      })
+        .then((res) => getShoppingList())
+        .catch((err) => console.log(err));
+    }
+    formObject.value = "";
   };
 
   useEffect(() => {
@@ -230,16 +240,22 @@ export default function TransferList() {
             <Grid item xs={12} sm={9} className={classes.textField}>
               <TextField
                 fullWidth
+                onChange={(event) => {
+                  const { value } = event.target;
+                  setFormObject({ value });
+                }}
                 id="standard"
                 label="Add your shopping items"
               />
             </Grid>
             <Grid item xs={12} sm={3} className={classes.awesomeButton}>
               <AwesomeButtonProgress
+                loadingLabel="Adding your item.."
+                resultLabel="Item added!"
                 type="link"
                 size="large"
                 action={(element, next) => {
-                  addShoppingItem("clicked");
+                  addShoppingItem();
                   setTimeout(() => {
                     next();
                   }, 600);
