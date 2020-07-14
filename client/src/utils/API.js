@@ -19,4 +19,10 @@ export default {
   saveRecipe: function (postData) {
     return axios.post("/api/recipes", postData);
   },
+  createShoppngList: function (postData) {
+    return axios.post("/api/shoppinglist", postData);
+  },
+  getShoppingList: function () {
+    return axios.get("/api/shoppinglist");
+  },
 };
