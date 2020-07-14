@@ -8,7 +8,6 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import Checkbox from "@material-ui/core/Checkbox";
-import Button from "@material-ui/core/Button";
 import Divider from "@material-ui/core/Divider";
 import Typography from "@material-ui/core/Typography";
 import API from "../utils/API";
@@ -86,10 +85,12 @@ export default function TransferList() {
   const deleteShoppingItem = (items) => () => {
     var deletedItems = items.filter((x) => x.checked);
     Object.values(deletedItems).forEach((element, index) => {
+      //debugger;
       API.deleteShoppingList(element._id)
         .then(() => {
           getShoppingList();
-          setRight(right.filter((x) => x._id !== element._id));
+          //setRight(right.filter((x) => x._id !== element._id));
+          setRight(right.filter((x) => !x.checked));
         })
         .catch((err) => console.log(err));
     });
@@ -220,7 +221,7 @@ export default function TransferList() {
             </Grid>
           </Grid>
         </div>
-        <Divider dark className={classes.divider} />
+        <Divider className={classes.divider} />
         <div className={classes.section2}>
           <Grid container spacing={2}>
             <Grid item xs={12} sm={9} className={classes.textField}>
