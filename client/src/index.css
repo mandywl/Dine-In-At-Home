@@ -31,3 +31,15 @@ h6,
 .aws-btn {
   font-size: 1.25rem;
 }
+
+h2 {
+  font-family: "Cute Font", cursive !important;
+}
+
+.MuiButton-outlined {
+  border: 2px solid black !important;
+}
+
+.MuiButton-outlined.Mui-disabled {
+  border: 1px solid rgba(0, 0, 0, 0.12) !important;
+}

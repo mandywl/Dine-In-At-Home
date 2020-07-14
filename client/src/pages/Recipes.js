@@ -65,6 +65,19 @@ export default function Recipe() {
       .catch((err) => console.log(err));
   };
 
+  const createShoppingList = (ingrediates) => {
+    console.log("Ingrediates are", ingrediates);
+    Object.values(ingrediates).forEach((element, index) => {
+      console.log(element);
+      API.createShoppngList({
+        ingrediates: element,
+      }).catch((err) => console.log(err));
+    });
+    // API.createShoppngList({
+    //   ingrediates: Object.values(ingrediates),
+    // }).catch((err) => console.log(err));
+  };
+
   useEffect(() => {
     getRecipes();
   }, []);
@@ -131,8 +144,9 @@ export default function Recipe() {
                   </IconButton>
                   <AwesomeButton
                     type="link"
-                    href="https://google.com"
+                    href="/shopping"
                     target="_blank"
+                    onPress={() => createShoppingList(recipe.ingrediates[0])}
                   >
                     Generate Shopping List
                   </AwesomeButton>
