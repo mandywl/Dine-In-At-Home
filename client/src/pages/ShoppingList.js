@@ -88,7 +88,8 @@ export default function TransferList() {
       //debugger;
       API.deleteShoppingList(element._id)
         .then(() => {
-          getShoppingList();
+          //getShoppingList();
+          setLeft(left.filter((x) => !x.checked));
           //setRight(right.filter((x) => x._id !== element._id));
           setRight(right.filter((x) => !x.checked));
         })
