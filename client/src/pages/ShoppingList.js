@@ -43,14 +43,6 @@ export default function TransferList() {
   const [left, setLeft] = React.useState([]);
   const [right, setRight] = React.useState([]);
 
-  useEffect(() => {
-    API.getShoppingList()
-      .then((res) => {
-        setLeft(res.data.map((x) => ({ ...x, checked: false })));
-      })
-      .catch((err) => console.log(err));
-  }, []);
-
   const numberOfChecked = (items) =>
     items.map((x) => x.checked).filter(Boolean).length;
 
@@ -65,69 +57,93 @@ export default function TransferList() {
     }
   };
 
-  const customList = (title, items) => (
-    //console.log("items are ", items),
-    console.log("number of checked ", numberOfChecked(items)),
-    console.log("items length ", items.length),
-    console.log(numberOfChecked(items) === items.length && items.length !== 0),
-    (
-      <Card>
-        <CardHeader
-          className={classes.cardHeader}
-          avatar={
-            <Checkbox
-              onClick={handleToggleAll(items)}
-              checked={
-                numberOfChecked(items) === items.length && items.length !== 0
-              }
-              indeterminate={
-                numberOfChecked(items) !== items.length &&
-                numberOfChecked(items) !== 0
-              }
-              disabled={items.length === 0}
-              inputProps={{ "aria-label": "all items selected" }}
-            />
-          }
-          action={
-            <IconButton aria-label="settings">
-              <DeleteForeverIcon />
-            </IconButton>
-          }
-          title={title}
-          subheader={`${numberOfChecked(items)}/${items.length} selected`}
-        />
-        <Divider />
-        <List className={classes.list} dense component="div" role="list">
-          {items.map((value, index) => {
-            const labelId = `transfer-list-all-item-${value.ingrediates}-label`;
+  const getShoppingList = () => {
+    API.getShoppingList()
+      .then((res) => {
+        setLeft(res.data.map((x) => ({ ...x, checked: false })));
+      })
+      .catch((err) => console.log(err));
+  };
 
-            return (
-              <ListItem
-                key={value.ingrediates + index}
-                role="listitem"
-                button
-                onClick={() => {
-                  //debugger;
-                  value.checked = !value.checked;
-                  setLeft([...left]);
-                }}
-              >
-                <ListItemIcon>
-                  <Checkbox
-                    checked={value.checked}
-                    tabIndex={-1}
-                    disableRipple
-                    inputProps={{ "aria-labelledby": labelId }}
-                  />
-                </ListItemIcon>
-                <ListItemText id={labelId} primary={`${value.ingrediates}`} />
-              </ListItem>
-            );
-          })}
-          <ListItem />
-        </List>
-      </Card>
-    )
+  const deleteShoppingItem = (items) => () => {
+    // console.log("deleteshoppingitem");
+    // console.log("items are ", items);
+    var deletedItems = items.filter((x) => x.checked);
+    // console.log("deletedItems are ", deletedItems);
+    Object.values(deletedItems).forEach((element, index) => {
+      console.log("element id is", element._id);
+      API.deleteShoppingList(element._id)
+        .then(() => {
+          getShoppingList();
+          // console.log("right is before setRight ", right);
+          setRight(right.filter((x) => x._id !== element._id));
+          // console.log("right is ", right);
+        })
+        .catch((err) => console.log(err));
+    });
+  };
+
+  useEffect(() => {
+    getShoppingList();
+  }, []);
+
+  const customList = (title, items) => (
+    <Card>
+      <CardHeader
+        className={classes.cardHeader}
+        avatar={
+          <Checkbox
+            onClick={handleToggleAll(items)}
+            checked={
+              numberOfChecked(items) === items.length && items.length !== 0
+            }
+            indeterminate={
+              numberOfChecked(items) !== items.length &&
+              numberOfChecked(items) !== 0
+            }
+            disabled={items.length === 0}
+            inputProps={{ "aria-label": "all items selected" }}
+          />
+        }
+        action={
+          <IconButton aria-label="settings" onClick={deleteShoppingItem(items)}>
+            <DeleteForeverIcon />
+          </IconButton>
+        }
+        title={title}
+        subheader={`${numberOfChecked(items)}/${items.length} selected`}
+      />
+      <Divider />
+      <List className={classes.list} dense component="div" role="list">
+        {items.map((value, index) => {
+          const labelId = `transfer-list-all-item-${value.ingrediates}-label`;
+
+          return (
+            <ListItem
+              key={value.ingrediates + index}
+              role="listitem"
+              button
+              onClick={() => {
+                //debugger;
+                value.checked = !value.checked;
+                setLeft([...left]);
+              }}
+            >
+              <ListItemIcon>
+                <Checkbox
+                  checked={value.checked}
+                  tabIndex={-1}
+                  disableRipple
+                  inputProps={{ "aria-labelledby": labelId }}
+                />
+              </ListItemIcon>
+              <ListItemText id={labelId} primary={`${value.ingrediates}`} />
+            </ListItem>
+          );
+        })}
+        <ListItem />
+      </List>
+    </Card>
   );
 
   return (
