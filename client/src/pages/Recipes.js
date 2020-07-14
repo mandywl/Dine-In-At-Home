@@ -23,6 +23,7 @@ import { Link } from "react-router-dom";
 const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: 345,
+    margin: theme.spacing(5, 5),
   },
   media: {
     height: 0,
@@ -84,7 +85,7 @@ export default function Recipe() {
 
   return (
     <>
-      <Grid container spacing={3}>
+      <Grid container>
         {recipes.map((recipe) => {
           return (
             <Grid item xs={12} sm={6} lg={3}>
