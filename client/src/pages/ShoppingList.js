@@ -8,25 +8,42 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import Checkbox from "@material-ui/core/Checkbox";
-import Button from "@material-ui/core/Button";
 import Divider from "@material-ui/core/Divider";
 import Typography from "@material-ui/core/Typography";
 import API from "../utils/API";
 import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
 import IconButton from "@material-ui/core/IconButton";
+import TextField from "@material-ui/core/TextField";
+import { AwesomeButton, AwesomeButtonProgress } from "react-awesome-button";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     margin: "auto",
+    width: "100%",
+    maxWidth: 860,
+  },
+  section1: {
+    margin: theme.spacing(3, 2),
+  },
+  section2: {
+    margin: theme.spacing(3),
+  },
+  divider: {
+    height: 2,
+    backgroundColor: "#000000",
+    margin: theme.spacing(8, 2),
   },
   cardHeader: {
     padding: theme.spacing(1, 2),
   },
   list: {
-    width: 330,
     height: 530,
     backgroundColor: theme.palette.background.paper,
     overflow: "auto",
+  },
+  awesomeButton: {
+    display: "inline-block",
+    alignSelf: "flex-end",
   },
   button: {
     margin: theme.spacing(0.5, 0),
@@ -42,12 +59,12 @@ export default function TransferList() {
   const classes = useStyles();
   const [left, setLeft] = React.useState([]);
   const [right, setRight] = React.useState([]);
+  const [formObject, setFormObject] = useState({});
 
   const numberOfChecked = (items) =>
     items.map((x) => x.checked).filter(Boolean).length;
 
   const handleToggleAll = (items) => () => {
-    console.log("handleToggleAll");
     if (numberOfChecked(items) === items.length) {
       items.map((x) => (x.checked = false));
       setLeft([...left]);
@@ -66,21 +83,32 @@ export default function TransferList() {
   };
 
   const deleteShoppingItem = (items) => () => {
-    // console.log("deleteshoppingitem");
-    // console.log("items are ", items);
     var deletedItems = items.filter((x) => x.checked);
-    // console.log("deletedItems are ", deletedItems);
     Object.values(deletedItems).forEach((element, index) => {
-      console.log("element id is", element._id);
+      //debugger;
       API.deleteShoppingList(element._id)
         .then(() => {
-          getShoppingList();
-          // console.log("right is before setRight ", right);
-          setRight(right.filter((x) => x._id !== element._id));
-          // console.log("right is ", right);
+          //getShoppingList();
+          setLeft(left.filter((x) => !x.checked));
+          //setRight(right.filter((x) => x._id !== element._id));
+          setRight(right.filter((x) => !x.checked));
         })
         .catch((err) => console.log(err));
     });
+  };
+
+  const addShoppingItem = () => {
+    if (formObject) {
+      API.createShoppngList({
+        ingrediates: formObject.value,
+      })
+        .then((res) => {
+          setFormObject({});
+          getShoppingList();
+        })
+        .catch((err) => console.log(err));
+    }
+    formObject.value = "";
   };
 
   useEffect(() => {
@@ -151,46 +179,82 @@ export default function TransferList() {
       <Typography className={classes.heading} color="textPrimary" variant="h2">
         Shopping List
       </Typography>
-      <Grid
-        container
-        spacing={2}
-        justify="center"
-        alignItems="center"
-        className={classes.root}
-      >
-        <Grid item>{customList("Items to buy", left)}</Grid>
-        <Grid item>
-          <Grid container direction="column" alignItems="center">
-            <Button
-              variant="outlined"
-              size="large"
-              className={classes.button}
-              onClick={() => {
-                setRight(right.concat(left.filter((x) => x.checked)));
-                setLeft(left.filter((x) => !x.checked));
-              }}
-              disabled={left.filter((x) => x.checked).length === 0}
-              aria-label="move selected right"
-            >
-              &gt;
-            </Button>
-            <Button
-              variant="outlined"
-              size="large"
-              className={classes.button}
-              onClick={() => {
-                setLeft(left.concat(right.filter((x) => x.checked)));
-                setRight(right.filter((x) => !x.checked));
-              }}
-              disabled={right.filter((x) => x.checked).length === 0}
-              aria-label="move selected left"
-            >
-              &lt;
-            </Button>
+      <div className={classes.root}>
+        <div className={classes.section1}>
+          <Grid
+            container
+            spacing={2}
+            justify="center"
+            alignItems="center"
+            className={classes.root}
+          >
+            <Grid item xs={12} md={5}>
+              {customList("Items to buy", left)}
+            </Grid>
+            <Grid item xs={12} md={2}>
+              <Grid container direction="column" alignItems="center">
+                <AwesomeButton
+                  size="small"
+                  type="link"
+                  onPress={() => {
+                    setRight(right.concat(left.filter((x) => x.checked)));
+                    setLeft(left.filter((x) => !x.checked));
+                  }}
+                  disabled={left.filter((x) => x.checked).length === 0}
+                >
+                  &gt;
+                </AwesomeButton>
+                <AwesomeButton
+                  size="small"
+                  type="link"
+                  onPress={() => {
+                    setLeft(left.concat(right.filter((x) => x.checked)));
+                    setRight(right.filter((x) => !x.checked));
+                  }}
+                  disabled={right.filter((x) => x.checked).length === 0}
+                >
+                  &lt;
+                </AwesomeButton>
+              </Grid>
+            </Grid>
+            <Grid item xs={12} md={5}>
+              {customList("Shopping Trolly", right)}
+            </Grid>
           </Grid>
-        </Grid>
-        <Grid item>{customList("Shopping Trolly", right)}</Grid>
-      </Grid>
+        </div>
+        <Divider className={classes.divider} />
+        <div className={classes.section2}>
+          <Grid container spacing={2}>
+            <Grid item xs={12} sm={9} className={classes.textField}>
+              <TextField
+                fullWidth
+                onChange={(event) => {
+                  setFormObject(event.target);
+                }}
+                id="standard"
+                label="Add your shopping items"
+              />
+            </Grid>
+            <Grid item xs={12} sm={3} className={classes.awesomeButton}>
+              <AwesomeButtonProgress
+                loadingLabel="Adding your item.."
+                resultLabel="Item added!"
+                type="link"
+                size="large"
+                disabled={Object.keys(formObject).length === 0}
+                action={(element, next) => {
+                  addShoppingItem();
+                  setTimeout(() => {
+                    next();
+                  }, 100);
+                }}
+              >
+                Add shopping items
+              </AwesomeButtonProgress>
+            </Grid>
+          </Grid>
+        </div>
+      </div>
     </>
   );
 }
