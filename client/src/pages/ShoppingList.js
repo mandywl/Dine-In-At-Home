@@ -14,19 +14,45 @@ import Typography from "@material-ui/core/Typography";
 import API from "../utils/API";
 import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
 import IconButton from "@material-ui/core/IconButton";
+import TextField from "@material-ui/core/TextField";
+import {
+  AwesomeButton,
+  AwesomeButtonProgress,
+  AwesomeButtonSocial,
+} from "react-awesome-button";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     margin: "auto",
+    width: "100%",
+    maxWidth: 860,
+  },
+  section1: {
+    margin: theme.spacing(3, 2),
+  },
+  section2: {
+    margin: theme.spacing(3),
+  },
+  divider: {
+    height: 2,
+    backgroundColor: "#000000",
+    margin: theme.spacing(8, 2),
   },
   cardHeader: {
     padding: theme.spacing(1, 2),
   },
   list: {
-    width: 330,
+    // width: 330,
     height: 530,
     backgroundColor: theme.palette.background.paper,
     overflow: "auto",
+  },
+  textField: {
+    //width: "",
+  },
+  awesomeButton: {
+    display: "inline-block",
+    alignSelf: "flex-end",
   },
   button: {
     margin: theme.spacing(0.5, 0),
@@ -81,6 +107,10 @@ export default function TransferList() {
         })
         .catch((err) => console.log(err));
     });
+  };
+
+  const addShoppingItem = (item) => () => {
+    console.log("hi");
   };
 
   useEffect(() => {
@@ -151,46 +181,76 @@ export default function TransferList() {
       <Typography className={classes.heading} color="textPrimary" variant="h2">
         Shopping List
       </Typography>
-      <Grid
-        container
-        spacing={2}
-        justify="center"
-        alignItems="center"
-        className={classes.root}
-      >
-        <Grid item>{customList("Items to buy", left)}</Grid>
-        <Grid item>
-          <Grid container direction="column" alignItems="center">
-            <Button
-              variant="outlined"
-              size="large"
-              className={classes.button}
-              onClick={() => {
-                setRight(right.concat(left.filter((x) => x.checked)));
-                setLeft(left.filter((x) => !x.checked));
-              }}
-              disabled={left.filter((x) => x.checked).length === 0}
-              aria-label="move selected right"
-            >
-              &gt;
-            </Button>
-            <Button
-              variant="outlined"
-              size="large"
-              className={classes.button}
-              onClick={() => {
-                setLeft(left.concat(right.filter((x) => x.checked)));
-                setRight(right.filter((x) => !x.checked));
-              }}
-              disabled={right.filter((x) => x.checked).length === 0}
-              aria-label="move selected left"
-            >
-              &lt;
-            </Button>
+      <div className={classes.root}>
+        <div className={classes.section1}>
+          <Grid
+            container
+            spacing={2}
+            justify="center"
+            alignItems="center"
+            className={classes.root}
+          >
+            <Grid item xs={12} md={5}>
+              {customList("Items to buy", left)}
+            </Grid>
+            <Grid item xs={12} md={2}>
+              <Grid container direction="column" alignItems="center">
+                <AwesomeButton
+                  size="small"
+                  type="link"
+                  onPress={() => {
+                    setRight(right.concat(left.filter((x) => x.checked)));
+                    setLeft(left.filter((x) => !x.checked));
+                  }}
+                  disabled={left.filter((x) => x.checked).length === 0}
+                >
+                  &gt;
+                </AwesomeButton>
+                <AwesomeButton
+                  size="small"
+                  type="link"
+                  onPress={() => {
+                    setLeft(left.concat(right.filter((x) => x.checked)));
+                    setRight(right.filter((x) => !x.checked));
+                  }}
+                  disabled={right.filter((x) => x.checked).length === 0}
+                >
+                  &lt;
+                </AwesomeButton>
+              </Grid>
+            </Grid>
+            <Grid item xs={12} md={5}>
+              {customList("Shopping Trolly", right)}
+            </Grid>
           </Grid>
-        </Grid>
-        <Grid item>{customList("Shopping Trolly", right)}</Grid>
-      </Grid>
+        </div>
+        <Divider dark className={classes.divider} />
+        <div className={classes.section2}>
+          <Grid container spacing={2}>
+            <Grid item xs={12} sm={9} className={classes.textField}>
+              <TextField
+                fullWidth
+                id="standard"
+                label="Add your shopping items"
+              />
+            </Grid>
+            <Grid item xs={12} sm={3} className={classes.awesomeButton}>
+              <AwesomeButtonProgress
+                type="link"
+                size="large"
+                action={(element, next) => {
+                  addShoppingItem("clicked");
+                  setTimeout(() => {
+                    next();
+                  }, 600);
+                }}
+              >
+                Add shopping items
+              </AwesomeButtonProgress>
+            </Grid>
+          </Grid>
+        </div>
+      </div>
     </>
   );
 }
