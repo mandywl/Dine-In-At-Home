@@ -32,6 +32,10 @@ h6,
   font-size: 1.25rem;
 }
 
+.aws-btn--link .aws-btn__wrapper .aws-btn__content {
+  background-color: rgb(96, 153, 124) !important;
+}
+
 h2 {
   font-family: "Cute Font", cursive !important;
 }
