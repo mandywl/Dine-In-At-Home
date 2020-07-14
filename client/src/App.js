@@ -12,7 +12,8 @@ function App() {
       <div>
         <Switch>
           <Route exact path={["/", "/recipes"]}>
-            <ResponsiveDrawer firstTab={<Recipes />} />
+            <ResponsiveDrawer />
+            <Recipes />
           </Route>
           <Route exact path="/recipes/:id">
             <ResponsiveDrawer />
