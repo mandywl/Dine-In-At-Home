@@ -17,6 +17,7 @@ import Box from "@material-ui/core/Box";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import { Link } from "react-router-dom";
+import logo from "../../assets/img/logo.png";
 
 const drawerWidth = 240;
 
@@ -28,14 +29,14 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
   },
   drawer: {
-    [theme.breakpoints.up("sm")]: {
+    [theme.breakpoints.up("md")]: {
       width: drawerWidth,
       flexShrink: 0,
       display: "none",
     },
   },
   appBar: {
-    [theme.breakpoints.up("sm")]: {
+    [theme.breakpoints.up("md")]: {
       width: `calc(100% - ${drawerWidth}px)`,
       marginLeft: drawerWidth,
       display: "none",
@@ -47,13 +48,13 @@ const useStyles = makeStyles((theme) => ({
   appBarDesktop: {
     backgroundColor: "rgb(250, 246, 236)",
     fontFamily: "Cute Font, cursive",
-    [theme.breakpoints.down("xs")]: {
+    [theme.breakpoints.down("sm")]: {
       display: "none",
     },
   },
   menuButton: {
     marginRight: theme.spacing(2),
-    [theme.breakpoints.up("sm")]: {
+    [theme.breakpoints.up("md")]: {
       display: "none",
     },
   },
@@ -65,6 +66,9 @@ const useStyles = makeStyles((theme) => ({
   content: {
     flexGrow: 1,
     padding: theme.spacing(3),
+  },
+  logo: {
+    width: 150,
   },
 }));
 
@@ -129,7 +133,7 @@ function ResponsiveDrawer(props) {
         <ListItemLink href="/">
           <ListItemText primary="Recipes" />
         </ListItemLink>
-        <ListItemLink href="/">
+        <ListItemLink href="/shopping">
           <ListItemText primary="Shopping List" />
         </ListItemLink>
       </List>
@@ -172,38 +176,15 @@ function ResponsiveDrawer(props) {
             textColor="primary"
             aria-label="scrollable force tabs example"
           >
-            <Tab
-              component={Link}
-              label="Dine In At Home"
-              to="/"
-              {...a11yProps(0)}
-            />
-            <Tab component={Link} label="Recipes" to="/" {...a11yProps(1)} />
-            <Tab
-              component={Link}
-              label="Shopping List"
-              to="shopping"
-              {...a11yProps(2)}
-            />
-            <Tab label="Contact Me" {...a11yProps(3)} />
-            <Tab label="Item Five" {...a11yProps(4)} />
+            <Toolbar component={Link} to="/">
+              <img src={logo} alt="logo" className={classes.logo} />
+            </Toolbar>
+            <Tab component={Link} label="Recipes" to="/" />
+            <Tab component={Link} label="Shopping List" to="/shopping" />
+            <Tab label="Contact Me" />
+            <Tab label="Item Five" />
           </Tabs>
         </AppBar>
-        <TabPanel value={value} index={0}>
-          {props.firstTab}
-        </TabPanel>
-        <TabPanel value={value} index={1}>
-          {props.firstTab}
-        </TabPanel>
-        <TabPanel value={value} index={2}>
-          {props.secondTab}
-        </TabPanel>
-        <TabPanel value={value} index={3}>
-          Item Four
-        </TabPanel>
-        <TabPanel value={value} index={4}>
-          Item Five
-        </TabPanel>
       </div>
       <nav className={classes.drawer} aria-label="mailbox folders">
         {/* The implementation can be swapped with js to avoid SEO duplication of links. */}

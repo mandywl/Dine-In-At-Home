@@ -14,15 +14,14 @@ import honeySoyChicken from "../assets/img/honeySoyChicken.jpg";
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
+    // margin: theme.spacing(5, 2),
   },
   paper: {
     // width: 600,
     padding: 20,
-    marginLeft: 20,
-    marginRight: 20,
-  },
-  control: {
-    padding: theme.spacing(2),
+    // marginLeft: 20,
+    // marginRight: 20,
+    margin: theme.spacing(5, 5),
   },
   list: {
     color: "#000000",
@@ -50,7 +49,7 @@ export default function RecipeDetails() {
 
   return (
     <div>
-      <Grid container className={classes.root} spacing={2}>
+      <Grid container className={classes.root}>
         <Grid item xs={12} sm={5}>
           <Paper className={classes.paper} elevation={3}>
             <Image src={`/static/media/${recipe.thumbnail}`} />
