@@ -15,11 +15,7 @@ import API from "../utils/API";
 import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
 import IconButton from "@material-ui/core/IconButton";
 import TextField from "@material-ui/core/TextField";
-import {
-  AwesomeButton,
-  AwesomeButtonProgress,
-  AwesomeButtonSocial,
-} from "react-awesome-button";
+import { AwesomeButton, AwesomeButtonProgress } from "react-awesome-button";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -42,13 +38,9 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(1, 2),
   },
   list: {
-    // width: 330,
     height: 530,
     backgroundColor: theme.palette.background.paper,
     overflow: "auto",
-  },
-  textField: {
-    //width: "",
   },
   awesomeButton: {
     display: "inline-block",
@@ -74,7 +66,6 @@ export default function TransferList() {
     items.map((x) => x.checked).filter(Boolean).length;
 
   const handleToggleAll = (items) => () => {
-    console.log("handleToggleAll");
     if (numberOfChecked(items) === items.length) {
       items.map((x) => (x.checked = false));
       setLeft([...left]);
@@ -93,31 +84,26 @@ export default function TransferList() {
   };
 
   const deleteShoppingItem = (items) => () => {
-    // console.log("deleteshoppingitem");
-    // console.log("items are ", items);
     var deletedItems = items.filter((x) => x.checked);
-    // console.log("deletedItems are ", deletedItems);
     Object.values(deletedItems).forEach((element, index) => {
-      console.log("element id is", element._id);
       API.deleteShoppingList(element._id)
         .then(() => {
           getShoppingList();
-          // console.log("right is before setRight ", right);
           setRight(right.filter((x) => x._id !== element._id));
-          // console.log("right is ", right);
         })
         .catch((err) => console.log(err));
     });
   };
 
   const addShoppingItem = () => {
-    console.log("add shopping");
-    console.log(formObject.value);
     if (formObject) {
       API.createShoppngList({
         ingrediates: formObject.value,
       })
-        .then((res) => getShoppingList())
+        .then((res) => {
+          setFormObject({});
+          getShoppingList();
+        })
         .catch((err) => console.log(err));
     }
     formObject.value = "";
@@ -241,8 +227,7 @@ export default function TransferList() {
               <TextField
                 fullWidth
                 onChange={(event) => {
-                  const { value } = event.target;
-                  setFormObject({ value });
+                  setFormObject(event.target);
                 }}
                 id="standard"
                 label="Add your shopping items"
@@ -254,11 +239,12 @@ export default function TransferList() {
                 resultLabel="Item added!"
                 type="link"
                 size="large"
+                disabled={Object.keys(formObject).length === 0}
                 action={(element, next) => {
                   addShoppingItem();
                   setTimeout(() => {
                     next();
-                  }, 600);
+                  }, 100);
                 }}
               >
                 Add shopping items
