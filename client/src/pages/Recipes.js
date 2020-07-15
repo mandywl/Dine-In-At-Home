@@ -67,11 +67,10 @@ export default function Recipe() {
   };
 
   const createShoppingList = (ingrediates) => {
-    console.log("Ingrediates are", ingrediates);
     Object.values(ingrediates).forEach((element, index) => {
-      console.log(element);
+      console.log(element.match(/(\b[A-Z][A-Z]+|\b[A-Z]\b)/g).join(" "));
       API.createShoppngList({
-        ingrediates: element,
+        ingrediates: element.match(/(\b[A-Z][A-Z]+|\b[A-Z]\b)/g).join(" "),
       }).catch((err) => console.log(err));
     });
     // API.createShoppngList({

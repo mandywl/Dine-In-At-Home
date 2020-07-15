@@ -100,7 +100,7 @@ export default function TransferList() {
   const addShoppingItem = () => {
     if (formObject) {
       API.createShoppngList({
-        ingrediates: formObject.value,
+        ingrediates: formObject.value.toUpperCase(),
       })
         .then((res) => {
           setFormObject({});
