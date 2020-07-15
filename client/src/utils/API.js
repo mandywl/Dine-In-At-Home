@@ -28,4 +28,7 @@ export default {
   deleteShoppingList: function (id) {
     return axios.delete("/api/shoppinglist/" + id);
   },
+  checkShoppingList: function (data) {
+    return axios.get("/api/check/shoppinglist");
+  },
 };

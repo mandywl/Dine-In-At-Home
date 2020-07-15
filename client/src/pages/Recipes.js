@@ -51,6 +51,7 @@ export default function Recipe() {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [open, setOpen] = React.useState(false);
   const [placement, setPlacement] = React.useState();
+  const [storedItems, setStoredItems] = React.useState([]);
 
   const handleClick = (newPlacement) => (event) => {
     setAnchorEl(event.currentTarget);
@@ -66,16 +67,39 @@ export default function Recipe() {
       .catch((err) => console.log(err));
   };
 
+  const checkShoppingList = (item) => {
+    //let array = {};
+    API.getShoppingList()
+      .then((res) => {
+        Object.keys(res.data).map((key, i) => {
+          if (res.data[key].ingrediates !== item) {
+            //console.log(item);
+            API.createShoppngList({
+              ingrediates: item,
+            }).catch((err) => console.log(err));
+          }
+        });
+      })
+      .catch((err) => console.log(err));
+    //return array;
+    // console.log(
+    //   storedItems.map((value, index) => {
+    //     value.includes("salt");
+    //   })
+    // );
+  };
+
   const createShoppingList = (ingrediates) => {
     Object.values(ingrediates).forEach((element, index) => {
-      console.log(element.match(/(\b[A-Z][A-Z]+|\b[A-Z]\b)/g).join(" "));
-      API.createShoppngList({
-        ingrediates: element.match(/(\b[A-Z][A-Z]+|\b[A-Z]\b)/g).join(" "),
-      }).catch((err) => console.log(err));
+      var item = element.match(/(\b[A-Z][A-Z]+|\b[A-Z]\b)/g);
+      if (item) {
+        checkShoppingList(item.join(" "));
+        //console.log(storedItems);
+        // API.createShoppngList({
+        //   ingrediates: item.join(" "),
+        // }).catch((err) => console.log(err));
+      }
     });
-    // API.createShoppngList({
-    //   ingrediates: Object.values(ingrediates),
-    // }).catch((err) => console.log(err));
   };
 
   useEffect(() => {
@@ -144,8 +168,9 @@ export default function Recipe() {
                   </IconButton>
                   <AwesomeButton
                     type="link"
-                    href="/shopping"
+                    // href="/shopping"
                     target="_blank"
+                    //onPress={() => checkShoppingList()}
                     onPress={() => createShoppingList(recipe.ingrediates[0])}
                   >
                     Generate Shopping List

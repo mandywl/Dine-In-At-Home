@@ -28,4 +28,11 @@ module.exports = {
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
+  find: function (req, res) {
+    db.ShoppingList.find({
+      ingrediates: { $in: [{ ingrediates: req.params.ingrediates }] },
+    })
+      .then((dbModel) => res.json(dbModel))
+      .catch((err) => res.status(422).json(err));
+  },
 };
