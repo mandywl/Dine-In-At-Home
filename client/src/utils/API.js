@@ -28,4 +28,13 @@ export default {
   deleteShoppingList: function (id) {
     return axios.delete("/api/shoppinglist/" + id);
   },
+  getFavorites: function () {
+    return axios.get("api/favorites");
+  },
+  getFavorite: function (id) {
+    return axios.get("api/favorites" + id);
+  },
+  deleteFavorite: function (id) {
+    return axios.delete("/api/favorites/" + id);
+  },
 };
