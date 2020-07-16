@@ -68,10 +68,13 @@ export default function Recipe() {
 
   const createShoppingList = (ingrediates) => {
     Object.values(ingrediates).forEach((element, index) => {
-      console.log(element.match(/(\b[A-Z][A-Z]+|\b[A-Z]\b)/g).join(" "));
-      API.createShoppngList({
-        ingrediates: element.match(/(\b[A-Z][A-Z]+|\b[A-Z]\b)/g).join(" "),
-      }).catch((err) => console.log(err));
+      let item = element.match(/(\b[A-Z][A-Z]+|\b[A-Z]\b)/g);
+      if (item) {
+        console.log(item.join(" "));
+        API.createShoppngList({
+          ingrediates: item.join(" "),
+        }).catch((err) => console.log(err));
+      }
     });
     // API.createShoppngList({
     //   ingrediates: Object.values(ingrediates),
@@ -87,7 +90,7 @@ export default function Recipe() {
       <Grid container>
         {recipes.map((recipe) => {
           return (
-            <Grid item xs={12} sm={6} lg={3}>
+            <Grid item xs={12} sm={6} lg={3} key={recipe._id}>
               <Card className={classes.root}>
                 <CardHeader
                   action={
