@@ -12,10 +12,16 @@ module.exports = {
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
-  create: function (req, res) {
-    db.ShoppingList.create(req.body)
-      .then((dbModel) => res.json(dbModel))
-      .catch((err) => res.status(422).json(err));
+  create: async function (req, res) {
+    const item = await db.ShoppingList.find(req.body);
+    console.log(req.body);
+    if (!item.length) {
+      db.ShoppingList.create(req.body)
+        .then((dbModel) => res.json(dbModel))
+        .catch((err) => res.status(422).json(err));
+    } else {
+      res.status(200).send("");
+    }
   },
   update: function (req, res) {
     db.ShoppingList.findOneAndUpdate({ _id: req.params.id }, req.body)
@@ -30,7 +36,7 @@ module.exports = {
   },
   find: function (req, res) {
     db.ShoppingList.find({
-      ingrediates: { $in: [{ ingrediates: req.params.ingrediates }] },
+      ingrediates: req.params.ingrediates,
     })
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));

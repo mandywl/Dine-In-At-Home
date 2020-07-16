@@ -67,33 +67,31 @@ export default function Recipe() {
       .catch((err) => console.log(err));
   };
 
-  const checkShoppingList = (item) => {
-    //let array = {};
-    API.getShoppingList()
-      .then((res) => {
-        Object.keys(res.data).map((key, i) => {
-          if (res.data[key].ingrediates !== item) {
-            //console.log(item);
-            API.createShoppngList({
-              ingrediates: item,
-            }).catch((err) => console.log(err));
-          }
-        });
-      })
-      .catch((err) => console.log(err));
-    //return array;
-    // console.log(
-    //   storedItems.map((value, index) => {
-    //     value.includes("salt");
-    //   })
-    // );
-  };
+  // const checkShoppingList = (item) => {
+  //   //let array = {};
+  //   API.getShoppingList()
+  //     .then((res) => {
+  //       Object.keys(res.data).map((key, i) => {
+  //         if (res.data[key].ingrediates !== item) {
+  //           //console.log(item);
+  //           API.createShoppngList({
+  //             ingrediates: item,
+  //           }).catch((err) => console.log(err));
+  //         }
+  //       });
+  //     })
+  //     .catch((err) => console.log(err));
+  // };
 
   const createShoppingList = (ingrediates) => {
     Object.values(ingrediates).forEach((element, index) => {
       var item = element.match(/(\b[A-Z][A-Z]+|\b[A-Z]\b)/g);
       if (item) {
-        checkShoppingList(item.join(" "));
+        // checkShoppingList(item.join(" "));
+
+        API.createShoppngList({
+          ingrediates: item.join(" "),
+        }).catch((err) => console.log(err));
         //console.log(storedItems);
         // API.createShoppngList({
         //   ingrediates: item.join(" "),
