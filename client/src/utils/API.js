@@ -32,9 +32,12 @@ export default {
     return axios.get("api/favorites");
   },
   getFavorite: function (id) {
-    return axios.get("api/favorites" + id);
+    return axios.get("api/favorites/" + id);
   },
   deleteFavorite: function (id) {
     return axios.delete("/api/favorites/" + id);
+  },
+  addFavorite: function (postData) {
+    return axios.post("/api/favorites", postData);
   },
 };
