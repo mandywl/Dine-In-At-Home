@@ -2,6 +2,7 @@ import React from "react";
 import Recipes from "./pages/Recipes";
 import RecipeDetails from "./pages/RecipeDetails";
 import ShoppingList from "./pages/ShoppingList";
+import Favorites from "./pages/Favorites";
 import NoMatch from "./pages/NoMatch";
 import ResponsiveDrawer from "./components/Nav";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
@@ -22,6 +23,10 @@ function App() {
           <Route exact path="/shopping">
             <ResponsiveDrawer />
             <ShoppingList />
+          </Route>
+          <Route exact path="/favorites">
+            <ResponsiveDrawer />
+            <Favorites />
           </Route>
           <Route>
             <ResponsiveDrawer />

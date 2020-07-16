@@ -18,6 +18,9 @@ import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import { Link } from "react-router-dom";
 import logo from "../../assets/img/logo.png";
+import Grid from "@material-ui/core/Grid";
+import FavoriteIcon from "@material-ui/icons/Favorite";
+import Tooltip from "@material-ui/core/Tooltip";
 
 const drawerWidth = 240;
 
@@ -25,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
   },
-  desktop: {
+  navbar: {
     flexGrow: 1,
   },
   drawer: {
@@ -69,6 +72,9 @@ const useStyles = makeStyles((theme) => ({
   },
   logo: {
     width: 150,
+  },
+  icons: {
+    paddingTop: 25,
   },
 }));
 
@@ -129,6 +135,9 @@ function ResponsiveDrawer(props) {
         <ListItemLink href="/shopping">
           <ListItemText primary="Shopping List" />
         </ListItemLink>
+        <ListItemLink href="/favorites">
+          <ListItemText primary="Favorites" />
+        </ListItemLink>
       </List>
     </div>
   );
@@ -140,7 +149,7 @@ function ResponsiveDrawer(props) {
     <div className={classes.root}>
       <CssBaseline />
 
-      <div className={classes.desktop}>
+      <div className={classes.navbar}>
         <AppBar className={classes.appBar}>
           <Toolbar>
             <IconButton
@@ -157,26 +166,41 @@ function ResponsiveDrawer(props) {
             </Typography>
           </Toolbar>
         </AppBar>
+
         <AppBar
           className={classes.appBarDesktop}
           position="static"
           color="default"
         >
-          <Tabs
-            value={value}
-            onChange={handleChange}
-            indicatorColor="primary"
-            textColor="primary"
-            aria-label="scrollable force tabs example"
-          >
-            <Toolbar component={Link} to="/">
-              <img src={logo} alt="logo" className={classes.logo} />
-            </Toolbar>
-            <Tab component={Link} label="Recipes" to="/" />
-            <Tab component={Link} label="Shopping List" to="/shopping" />
-            <Tab label="Contact Me" />
-            <Tab label="Item Five" />
-          </Tabs>
+          <Grid container spacing={24}>
+            <Grid item xs={10}>
+              <Tabs
+                value={value}
+                onChange={handleChange}
+                indicatorColor="primary"
+                textColor="primary"
+                aria-label="scrollable force tabs example"
+              >
+                <Toolbar component={Link} to="/">
+                  <img src={logo} alt="logo" className={classes.logo} />
+                </Toolbar>
+                <Tab component={Link} label="Recipes" to="/" />
+                <Tab component={Link} label="Shopping List" to="/shopping" />
+                <Tab label="Contact Me" />
+              </Tabs>
+            </Grid>
+            <Grid item xs={2}>
+              <Tooltip title="Favorites">
+                <Tab
+                  component={Link}
+                  icon={<FavoriteIcon />}
+                  className={classes.icons}
+                  aria-label="favorite"
+                  to="/favorites"
+                />
+              </Tooltip>
+            </Grid>
+          </Grid>
         </AppBar>
       </div>
       <nav className={classes.drawer} aria-label="mailbox folders">
