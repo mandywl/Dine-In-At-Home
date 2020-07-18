@@ -20,6 +20,8 @@ import { Link } from "react-router-dom";
 import logo from "../../assets/img/logo.png";
 import Grid from "@material-ui/core/Grid";
 import FavoriteIcon from "@material-ui/icons/Favorite";
+import SigninIcon from "@material-ui/icons/AccountCircleOutlined";
+import LoginIcon from "@material-ui/icons/AccountCircle";
 import Tooltip from "@material-ui/core/Tooltip";
 
 const drawerWidth = 240;
@@ -74,7 +76,8 @@ const useStyles = makeStyles((theme) => ({
     width: 150,
   },
   icons: {
-    paddingTop: 25,
+    padding: theme.spacing(3, 0, 0, 0),
+    minWidth: "50px !important",
   },
 }));
 
@@ -138,6 +141,9 @@ function ResponsiveDrawer(props) {
         <ListItemLink href="/favorites">
           <ListItemText primary="Favorites" />
         </ListItemLink>
+        <ListItemLink href="/signup">
+          <ListItemText primary="Sign up" />
+        </ListItemLink>
       </List>
     </div>
   );
@@ -172,7 +178,7 @@ function ResponsiveDrawer(props) {
           position="static"
           color="default"
         >
-          <Grid container spacing={24}>
+          <Grid container>
             <Grid item xs={10}>
               <Tabs
                 value={value}
@@ -197,6 +203,24 @@ function ResponsiveDrawer(props) {
                   className={classes.icons}
                   aria-label="favorite"
                   to="/favorites"
+                />
+              </Tooltip>
+              <Tooltip title="Sign up">
+                <Tab
+                  component={Link}
+                  icon={<SigninIcon />}
+                  className={classes.icons}
+                  aria-label="sign up"
+                  to="/signup"
+                />
+              </Tooltip>
+              <Tooltip title="Login">
+                <Tab
+                  component={Link}
+                  icon={<LoginIcon />}
+                  className={classes.icons}
+                  aria-label="login"
+                  to="/login"
                 />
               </Tooltip>
             </Grid>
