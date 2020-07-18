@@ -3,7 +3,6 @@ import API from "../utils/API";
 import { makeStyles } from "@material-ui/core/styles";
 import FavoriteList from "../components/FavoriteList";
 import Typography from "@material-ui/core/Typography";
-import Grid from "@material-ui/core/Grid";
 
 const useStyles = makeStyles((theme) => ({
   heading: {

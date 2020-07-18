@@ -26,7 +26,6 @@ export default function FavoriteList(props) {
           ))}
         </Grid>
       ) : (
-        //<h4 className="center">{"Your favorites list is empty!"}</h4>
         <Typography
           className={classes.heading}
           color="textPrimary"

@@ -60,7 +60,6 @@ export default function Favourites({
   const [open, setOpen] = React.useState(false);
   const [placement, setPlacement] = React.useState();
   const [added, setAdded] = useState(false);
-  const [favorites, setFavorites] = useState([]);
 
   function checkAdded() {
     API.getFavorite(id)
