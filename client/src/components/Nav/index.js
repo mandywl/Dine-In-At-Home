@@ -23,6 +23,8 @@ import FavoriteIcon from "@material-ui/icons/Favorite";
 import SigninIcon from "@material-ui/icons/AccountCircleOutlined";
 import LoginIcon from "@material-ui/icons/AccountCircle";
 import Tooltip from "@material-ui/core/Tooltip";
+import Avatar from "@material-ui/core/Avatar";
+import { deepOrange } from "@material-ui/core/colors";
 
 const drawerWidth = 240;
 
@@ -76,8 +78,18 @@ const useStyles = makeStyles((theme) => ({
     width: 150,
   },
   icons: {
-    padding: theme.spacing(3, 0, 0, 0),
+    padding: theme.spacing(3, 3, 0, 0),
     minWidth: "50px !important",
+    float: "right",
+  },
+  avatar: {
+    padding: theme.spacing(2, 3, 0, 0),
+    minWidth: "50px !important",
+    float: "right",
+  },
+  orange: {
+    color: theme.palette.getContrastText(deepOrange[500]),
+    backgroundColor: deepOrange[500],
   },
 }));
 
@@ -179,7 +191,7 @@ function ResponsiveDrawer(props) {
           color="default"
         >
           <Grid container>
-            <Grid item xs={10}>
+            <Grid item xs={9}>
               <Tabs
                 value={value}
                 onChange={handleChange}
@@ -195,7 +207,7 @@ function ResponsiveDrawer(props) {
                 <Tab label="Contact Me" />
               </Tabs>
             </Grid>
-            <Grid item xs={2}>
+            <Grid item xs={3}>
               <Tooltip title="Favorites">
                 <Tab
                   component={Link}
@@ -221,6 +233,17 @@ function ResponsiveDrawer(props) {
                   className={classes.icons}
                   aria-label="login"
                   to="/login"
+                />
+              </Tooltip>
+              <Tooltip title="Log out">
+                <Tab
+                  label={
+                    <Avatar alt="Remy Sharp" src="" className={classes.orange}>
+                      M
+                    </Avatar>
+                  }
+                  value="/messages"
+                  className={classes.avatar}
                 />
               </Tooltip>
             </Grid>
