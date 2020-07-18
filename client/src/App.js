@@ -4,6 +4,8 @@ import RecipeDetails from "./pages/RecipeDetails";
 import ShoppingList from "./pages/ShoppingList";
 import Favorites from "./pages/Favorites";
 import NoMatch from "./pages/NoMatch";
+import Signup from "./pages/Signup";
+import Login from "./pages/Login";
 import ResponsiveDrawer from "./components/Nav";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
@@ -11,25 +13,27 @@ function App() {
   return (
     <Router>
       <div>
+        <ResponsiveDrawer />
         <Switch>
           <Route exact path={["/", "/recipes"]}>
-            <ResponsiveDrawer />
             <Home />
           </Route>
           <Route exact path="/recipes/:id">
-            <ResponsiveDrawer />
             <RecipeDetails />
           </Route>
           <Route exact path="/shopping">
-            <ResponsiveDrawer />
             <ShoppingList />
           </Route>
           <Route exact path="/favorites">
-            <ResponsiveDrawer />
             <Favorites />
           </Route>
+          <Route exact path="/signup">
+            <Signup />
+          </Route>
+          <Route exact path="/login">
+            <Login />
+          </Route>
           <Route>
-            <ResponsiveDrawer />
             <NoMatch />
           </Route>
         </Switch>
