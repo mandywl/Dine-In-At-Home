@@ -135,7 +135,7 @@ function ResponsiveDrawer(props) {
         <ListItemLink href="/shopping">
           <ListItemText primary="Shopping List" />
         </ListItemLink>
-        <ListItemLink href="/favorites" target="_blank">
+        <ListItemLink href="/favorites">
           <ListItemText primary="Favorites" />
         </ListItemLink>
       </List>
@@ -197,7 +197,6 @@ function ResponsiveDrawer(props) {
                   className={classes.icons}
                   aria-label="favorite"
                   to="/favorites"
-                  target="_blank"
                 />
               </Tooltip>
             </Grid>

@@ -5,7 +5,7 @@ export default function Results(props) {
   return (
     <>
       {props.results.map((recipe) => (
-        <Recipes recipe={recipe} id={recipe._id} key={recipe._id} />
+        <Recipes recipe={recipe} />
       ))}
     </>
   );

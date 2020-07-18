@@ -12,4 +12,9 @@ router
   .get(favoriteController.findById)
   .delete(favoriteController.remove);
 
+router
+  .route("/recipe/:id")
+  .get(favoriteController.findByRecipeId)
+  .delete(favoriteController.removeByRecipeId);
+
 module.exports = router;

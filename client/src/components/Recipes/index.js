@@ -47,7 +47,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Recipes({ recipe, id }) {
+export default function Recipes({ recipe }) {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [open, setOpen] = React.useState(false);
@@ -55,7 +55,7 @@ export default function Recipes({ recipe, id }) {
   const [added, setAdded] = useState(false);
 
   function checkAdded() {
-    API.getFavorite(id)
+    API.getFavoriteByRecipeID(recipe._id)
       .then((data) => {
         if (data.data) {
           setAdded(true);
@@ -74,7 +74,7 @@ export default function Recipes({ recipe, id }) {
     console.log("adding recipes");
     e.preventDefault();
     if (added) {
-      API.deleteFavorite(id).then((data) => setAdded(false));
+      API.deleteFavoriteByRecipeId(recipe._id).then((data) => setAdded(false));
     } else {
       API.addFavorite({
         title: recipe.title,
