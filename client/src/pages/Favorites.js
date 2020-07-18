@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import Grid from "@material-ui/core/Grid";
-import Typography from "@material-ui/core/Typography";
 import API from "../utils/API";
-import RecipesList from "../components/RecipesList";
+import { makeStyles } from "@material-ui/core/styles";
+import FavoriteList from "../components/FavoriteList";
+import Typography from "@material-ui/core/Typography";
+import Grid from "@material-ui/core/Grid";
 
 const useStyles = makeStyles((theme) => ({
   heading: {
@@ -11,18 +11,29 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Favourites(props) {
+export default function Favorites() {
   const classes = useStyles();
-  const [favorites, setFavorites] = useState([]);
+  const [results, setResults] = useState([]);
 
-  const getFavorites = () => {
+  function loadFavorites() {
     API.getFavorites()
-      .then((res) => setFavorites(res.data))
+      .then((res) => {
+        if (res.data.status === "error") {
+          throw new Error(res.data.message);
+        }
+        setResults(res.data);
+      })
       .catch((err) => console.log(err));
+  }
+
+  const handleRemoveFromFavorites = (id) => {
+    API.deleteFavorite(id).then((data) => {
+      loadFavorites();
+    });
   };
 
   useEffect(() => {
-    getFavorites();
+    loadFavorites();
   }, []);
 
   return (
@@ -30,18 +41,12 @@ export default function Favourites(props) {
       <Typography className={classes.heading} color="textPrimary" variant="h2">
         Favorites
       </Typography>
-      <Grid container>
-        {favorites.map((favorite) => {
-          return (
-            <RecipesList
-              recipes={favorites}
-              recipe={favorite}
-              favoriteID={favorite._id}
-              id={favorite.recipeID}
-            />
-          );
-        })}
-      </Grid>
+      {/* <Grid container> */}
+      <FavoriteList
+        results={results}
+        handleRemoveFromFavorites={handleRemoveFromFavorites}
+      />
+      {/* </Grid> */}
     </>
   );
 }

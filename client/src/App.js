@@ -1,5 +1,5 @@
 import React from "react";
-import Recipes from "./pages/Recipes";
+import Home from "./pages/Home";
 import RecipeDetails from "./pages/RecipeDetails";
 import ShoppingList from "./pages/ShoppingList";
 import Favorites from "./pages/Favorites";
@@ -14,7 +14,7 @@ function App() {
         <Switch>
           <Route exact path={["/", "/recipes"]}>
             <ResponsiveDrawer />
-            <Recipes />
+            <Home />
           </Route>
           <Route exact path="/recipes/:id">
             <ResponsiveDrawer />
