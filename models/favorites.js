@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
+const ObjectId = Schema.Types.ObjectId;
 
 const favoriteSchema = new Schema({
   title: { type: String, required: true },
@@ -7,6 +8,7 @@ const favoriteSchema = new Schema({
   ingrediates: Array,
   thumbnail: { type: String, required: true },
   method: Array,
+  recipeID: { type: ObjectId, required: true },
 });
 
 const Favorite = mongoose.model("Favorites", favoriteSchema);

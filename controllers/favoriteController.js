@@ -12,6 +12,11 @@ module.exports = {
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
+  findByRecipeId: function (req, res) {
+    db.Favorite.findOne({ recipeID: req.params.id })
+      .then((dbModel) => res.json(dbModel))
+      .catch((err) => res.status(422).json(err));
+  },
   create: function (req, res) {
     db.Favorite.create(req.body)
       .then((dbModel) => res.json(dbModel))
@@ -25,6 +30,11 @@ module.exports = {
   remove: function (req, res) {
     db.Favorite.findById({ _id: req.params.id })
       .then((dbModel) => dbModel.remove())
+      .then((dbModel) => res.json(dbModel))
+      .catch((err) => res.status(422).json(err));
+  },
+  removeByRecipeId: function (req, res) {
+    db.Favorite.findOneAndDelete({ recipeID: req.params.id })
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
