@@ -34,8 +34,14 @@ export default {
   getFavorite: function (id) {
     return axios.get("api/favorites/" + id);
   },
+  getFavoriteByRecipeID: function (recipeID) {
+    return axios.get("api/favorites/recipe/" + recipeID);
+  },
   deleteFavorite: function (id) {
     return axios.delete("/api/favorites/" + id);
+  },
+  deleteFavoriteByRecipeId: function (recipeID) {
+    return axios.delete("/api/favorites/recipe/" + recipeID);
   },
   addFavorite: function (postData) {
     return axios.post("/api/favorites", postData);
