@@ -87,10 +87,6 @@ export default function Recipes({ recipe, id }) {
     }
   };
 
-  //   const handleDeleteFavorites = (e) => {
-  //     API.deleteFavorite(props.favoriteID).then((data) => setAdded(false));
-  //   };
-
   const handleClick = (newPlacement) => (event) => {
     setAnchorEl(event.currentTarget);
     setOpen((prev) => placement !== newPlacement || !prev);
