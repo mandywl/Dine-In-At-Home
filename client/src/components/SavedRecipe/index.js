@@ -16,8 +16,6 @@ import Grid from "@material-ui/core/Grid";
 import Popper from "@material-ui/core/Popper";
 import Fade from "@material-ui/core/Fade";
 import Paper from "@material-ui/core/Paper";
-import beefStroganoff from "../../assets/img/beefStroganoff.jpg";
-import honeySoyChicken from "../../assets/img/honeySoyChicken.jpg";
 import { Link } from "react-router-dom";
 import { red } from "@material-ui/core/colors";
 import { UserContext } from "../../utils/UserContext";
@@ -106,7 +104,7 @@ export default function Favourites({
 
   return (
     <>
-      <Grid item xs={12} sm={6} lg={3} key={favorite._id}>
+      <Grid item xs={12} sm={6} lg={4} key={favorite._id}>
         <Card className={classes.root}>
           <CardHeader
             action={
