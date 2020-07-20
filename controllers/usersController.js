@@ -4,7 +4,7 @@ const passport = require("passport");
 module.exports = {
   register: function (req, res) {
     db.User.register(
-      new db.User(({ email } = req.body)),
+      new db.User(({ username, email } = req.body)),
       req.body.password,
       function (err, account) {
         if (err) {
@@ -13,6 +13,7 @@ module.exports = {
         }
         passport.authenticate("local")(req, res, function () {
           res.json(req.user);
+          //return res.send(req.user);
         });
       }
     );
