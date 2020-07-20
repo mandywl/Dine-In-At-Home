@@ -132,7 +132,13 @@ function ResponsiveDrawer(props) {
 
   function logout() {
     API.logout().then((res) => {
-      setUserState({ ...userState, name: "", email: "", authenticated: false });
+      setUserState({
+        ...userState,
+        name: "",
+        email: "",
+        id: "",
+        authenticated: false,
+      });
     });
   }
 

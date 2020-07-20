@@ -12,4 +12,6 @@ router
   .get(shoppingController.findById)
   .delete(shoppingController.remove);
 
+router.route("/user/:id").get(shoppingController.findByUserId);
+
 module.exports = router;

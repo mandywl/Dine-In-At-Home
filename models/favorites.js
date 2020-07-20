@@ -9,6 +9,7 @@ const favoriteSchema = new Schema({
   thumbnail: { type: String, required: true },
   method: Array,
   recipeID: { type: ObjectId, required: true },
+  userID: { type: ObjectId, required: true },
 });
 
 const Favorite = mongoose.model("Favorites", favoriteSchema);
