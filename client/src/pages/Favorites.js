@@ -3,9 +3,14 @@ import API from "../utils/API";
 import { makeStyles } from "@material-ui/core/styles";
 import FavoriteList from "../components/FavoriteList";
 import Typography from "@material-ui/core/Typography";
+import Grid from "@material-ui/core/Grid";
 import { UserContext } from "../utils/UserContext";
 
 const useStyles = makeStyles((theme) => ({
+  root: {
+    maxWidth: 1200,
+    margin: "0 auto",
+  },
   heading: {
     textAlign: "center",
   },
@@ -43,12 +48,12 @@ export default function Favorites() {
       <Typography className={classes.heading} color="textPrimary" variant="h2">
         Favorites
       </Typography>
-      {/* <Grid container> */}
-      <FavoriteList
-        results={results}
-        handleRemoveFromFavorites={handleRemoveFromFavorites}
-      />
-      {/* </Grid> */}
+      <Grid container justify="center" className={classes.root}>
+        <FavoriteList
+          results={results}
+          handleRemoveFromFavorites={handleRemoveFromFavorites}
+        />
+      </Grid>
     </>
   );
 }
