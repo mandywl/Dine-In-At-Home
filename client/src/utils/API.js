@@ -46,4 +46,21 @@ export default {
   addFavorite: function (postData) {
     return axios.post("/api/favorites", postData);
   },
+  // Login
+  login: function (userData) {
+    return axios.post("/api/users/login", userData);
+  },
+
+  isLoggedIn: function () {
+    return axios.get("/api/users/isLoggedIn");
+  },
+
+  logout: function () {
+    return axios.get("/api/users/logout");
+  },
+
+  // Registration
+  register: function (userData) {
+    return axios.post("/api/users/register", userData);
+  },
 };

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import PropTypes from "prop-types";
 import AppBar from "@material-ui/core/AppBar";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -20,7 +20,13 @@ import { Link } from "react-router-dom";
 import logo from "../../assets/img/logo.png";
 import Grid from "@material-ui/core/Grid";
 import FavoriteIcon from "@material-ui/icons/Favorite";
+import SigninIcon from "@material-ui/icons/AccountCircleOutlined";
+import LoginIcon from "@material-ui/icons/AccountCircle";
 import Tooltip from "@material-ui/core/Tooltip";
+import Avatar from "@material-ui/core/Avatar";
+import { deepOrange } from "@material-ui/core/colors";
+import { UserContext } from "../../utils/UserContext";
+import API from "../../utils/API";
 
 const drawerWidth = 240;
 
@@ -74,7 +80,18 @@ const useStyles = makeStyles((theme) => ({
     width: 150,
   },
   icons: {
-    paddingTop: 25,
+    padding: theme.spacing(3, 3, 0, 0),
+    minWidth: "50px !important",
+    float: "right",
+  },
+  avatar: {
+    padding: theme.spacing(2, 3, 0, 0),
+    minWidth: "50px !important",
+    float: "right",
+  },
+  orange: {
+    color: theme.palette.getContrastText(deepOrange[500]),
+    backgroundColor: deepOrange[500],
   },
 }));
 
@@ -109,8 +126,15 @@ function ResponsiveDrawer(props) {
   const classes = useStyles();
   const theme = useTheme();
   const [mobileOpen, setMobileOpen] = React.useState(false);
+  const [userState, setUserState] = useContext(UserContext);
 
   const [value, setValue] = React.useState(0);
+
+  function logout() {
+    API.logout().then((res) => {
+      setUserState({ ...userState, name: "", email: "", authenticated: false });
+    });
+  }
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -137,6 +161,9 @@ function ResponsiveDrawer(props) {
         </ListItemLink>
         <ListItemLink href="/favorites">
           <ListItemText primary="Favorites" />
+        </ListItemLink>
+        <ListItemLink href="/signup">
+          <ListItemText primary="Sign up" />
         </ListItemLink>
       </List>
     </div>
@@ -172,8 +199,8 @@ function ResponsiveDrawer(props) {
           position="static"
           color="default"
         >
-          <Grid container spacing={24}>
-            <Grid item xs={10}>
+          <Grid container>
+            <Grid item xs={9}>
               <Tabs
                 value={value}
                 onChange={handleChange}
@@ -189,7 +216,7 @@ function ResponsiveDrawer(props) {
                 <Tab label="Contact Me" />
               </Tabs>
             </Grid>
-            <Grid item xs={2}>
+            <Grid item xs={3}>
               <Tooltip title="Favorites">
                 <Tab
                   component={Link}
@@ -199,6 +226,50 @@ function ResponsiveDrawer(props) {
                   to="/favorites"
                 />
               </Tooltip>
+
+              {userState.name && userState.authenticated ? (
+                <>
+                  <Tooltip title="Log out">
+                    <Tab
+                      component={Link}
+                      to="/"
+                      label={
+                        <Avatar
+                          alt="Remy Sharp"
+                          src=""
+                          className={classes.orange}
+                        >
+                          {userState.name.charAt(0).toUpperCase()}
+                        </Avatar>
+                      }
+                      value="/messages"
+                      className={classes.avatar}
+                      onClick={logout}
+                    />
+                  </Tooltip>
+                </>
+              ) : (
+                <>
+                  <Tooltip title="Sign up">
+                    <Tab
+                      component={Link}
+                      icon={<SigninIcon />}
+                      className={classes.icons}
+                      aria-label="sign up"
+                      to="/signup"
+                    />
+                  </Tooltip>
+                  <Tooltip title="Login">
+                    <Tab
+                      component={Link}
+                      icon={<LoginIcon />}
+                      className={classes.icons}
+                      aria-label="login"
+                      to="/login"
+                    />
+                  </Tooltip>
+                </>
+              )}
             </Grid>
           </Grid>
         </AppBar>

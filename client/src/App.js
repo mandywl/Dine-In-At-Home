@@ -4,37 +4,44 @@ import RecipeDetails from "./pages/RecipeDetails";
 import ShoppingList from "./pages/ShoppingList";
 import Favorites from "./pages/Favorites";
 import NoMatch from "./pages/NoMatch";
+import Signup from "./pages/Signup";
+import Login from "./pages/Login";
 import ResponsiveDrawer from "./components/Nav";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { ProtectedRoute } from "./protectedRoute";
+import { UserProvider } from "./utils/UserContext";
 
 function App() {
   return (
-    <Router>
-      <div>
-        <Switch>
-          <Route exact path={["/", "/recipes"]}>
-            <ResponsiveDrawer />
-            <Home />
-          </Route>
-          <Route exact path="/recipes/:id">
-            <ResponsiveDrawer />
-            <RecipeDetails />
-          </Route>
-          <Route exact path="/shopping">
-            <ResponsiveDrawer />
+    <UserProvider>
+      <Router>
+        <div>
+          <ResponsiveDrawer />
+          <Switch>
+            <Route exact path={["/", "/recipes"]}>
+              <Home />
+            </Route>
+            <Route exact path="/recipes/:id">
+              <RecipeDetails />
+            </Route>
+            {/* <Route exact path="/shopping">
             <ShoppingList />
-          </Route>
-          <Route exact path="/favorites">
-            <ResponsiveDrawer />
-            <Favorites />
-          </Route>
-          <Route>
-            <ResponsiveDrawer />
-            <NoMatch />
-          </Route>
-        </Switch>
-      </div>
-    </Router>
+          </Route> */}
+            <ProtectedRoute exact path="/favorites" component={Favorites} />
+            <ProtectedRoute exact path="/shopping" component={ShoppingList} />
+            <Route exact path="/signup">
+              <Signup />
+            </Route>
+            <Route exact path="/login">
+              <Login />
+            </Route>
+            <Route>
+              <NoMatch />
+            </Route>
+          </Switch>
+        </div>
+      </Router>
+    </UserProvider>
   );
 }
 
