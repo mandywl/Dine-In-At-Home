@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardHeader from "@material-ui/core/CardHeader";
@@ -20,6 +20,8 @@ import beefStroganoff from "../../assets/img/beefStroganoff.jpg";
 import honeySoyChicken from "../../assets/img/honeySoyChicken.jpg";
 import { Link } from "react-router-dom";
 import { red } from "@material-ui/core/colors";
+import { UserContext } from "../../utils/UserContext";
+import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   heading: {
@@ -60,6 +62,8 @@ export default function Favourites({
   const [open, setOpen] = React.useState(false);
   const [placement, setPlacement] = React.useState();
   const [added, setAdded] = useState(false);
+  const [userState, setUserState] = useContext(UserContext);
+  let history = useHistory();
 
   function checkAdded() {
     API.getFavorite(id)
@@ -90,7 +94,12 @@ export default function Favourites({
         //console.log(item.join(" "));
         API.createShoppngList({
           ingrediates: item.join(" "),
-        }).catch((err) => console.log(err));
+          userID: userState.id,
+        })
+          .then((res) => {
+            history.push("/shopping");
+          })
+          .catch((err) => console.log(err));
       }
     });
   };
@@ -153,8 +162,6 @@ export default function Favourites({
             </IconButton>
             <AwesomeButton
               type="link"
-              href="/shopping"
-              target="_blank"
               onPress={() => createShoppingList(favorite.ingrediates[0])}
             >
               Generate Shopping List

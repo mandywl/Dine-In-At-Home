@@ -17,4 +17,6 @@ router
   .get(favoriteController.findByRecipeId)
   .delete(favoriteController.removeByRecipeId);
 
+router.route("/user/:id").get(favoriteController.findByUserId);
+
 module.exports = router;
