@@ -94,7 +94,7 @@ export default function Favourites({
           ingrediates: item.join(" "),
           userID: userState.id,
         })
-          .then((res) => {
+          .then(() => {
             history.push("/shopping");
           })
           .catch((err) => console.log(err));

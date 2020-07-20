@@ -1,8 +1,9 @@
 import React from "react";
-import SavedRecipe from "../SavedRecipe/";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
+
+import SavedRecipe from "../SavedRecipe/";
 
 const useStyles = makeStyles((theme) => ({
   heading: {

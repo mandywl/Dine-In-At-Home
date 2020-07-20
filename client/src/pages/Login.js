@@ -102,6 +102,7 @@ export default function Login() {
                 <TextField
                   id="password"
                   name="password"
+                  type="password"
                   label="Enter your password"
                   fullWidth
                   required
