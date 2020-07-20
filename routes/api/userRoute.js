@@ -17,5 +17,6 @@ router.get("/isLoggedIn", isLoggedIn, function (req, res) {
 });
 
 router.get("/logout", usersController.logout);
+router.get("/:id", usersController.getUsers);
 
 module.exports = router;

@@ -12,6 +12,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function FavoriteList(props) {
   const classes = useStyles();
+  console.log("results length is", props.results);
   return (
     <>
       {props.results.length ? (

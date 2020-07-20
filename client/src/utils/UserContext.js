@@ -8,6 +8,7 @@ const UserProvider = ({ ...props }) => {
     authenticated: false,
     name: "",
     email: "",
+    id: "",
   });
 
   return <Provider value={[userState, SetUserState]} {...props} />;
