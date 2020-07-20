@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import List from "@material-ui/core/List";
@@ -15,6 +15,7 @@ import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
 import IconButton from "@material-ui/core/IconButton";
 import TextField from "@material-ui/core/TextField";
 import { AwesomeButton, AwesomeButtonProgress } from "react-awesome-button";
+import { UserContext } from "../utils/UserContext";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -60,6 +61,7 @@ export default function TransferList() {
   const [left, setLeft] = React.useState([]);
   const [right, setRight] = React.useState([]);
   const [formObject, setFormObject] = useState({});
+  const [userState, setUserState] = useContext(UserContext);
 
   const numberOfChecked = (items) =>
     items.map((x) => x.checked).filter(Boolean).length;
@@ -75,7 +77,7 @@ export default function TransferList() {
   };
 
   const getShoppingList = () => {
-    API.getShoppingList()
+    API.getShoppingListByUserID(userState.id)
       .then((res) => {
         setLeft(res.data.map((x) => ({ ...x, checked: false })));
       })

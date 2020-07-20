@@ -28,6 +28,9 @@ export default {
   deleteShoppingList: function (id) {
     return axios.delete("/api/shoppinglist/" + id);
   },
+  getShoppingListByUserID: function (UserID) {
+    return axios.get("api/shoppinglist/user/" + UserID);
+  },
   getFavorites: function () {
     return axios.get("api/favorites");
   },
@@ -36,6 +39,9 @@ export default {
   },
   getFavoriteByRecipeID: function (recipeID) {
     return axios.get("api/favorites/recipe/" + recipeID);
+  },
+  getFavoriteByUserID: function (UserID) {
+    return axios.get("api/favorites/user/" + UserID);
   },
   deleteFavorite: function (id) {
     return axios.delete("/api/favorites/" + id);
@@ -62,5 +68,9 @@ export default {
   // Registration
   register: function (userData) {
     return axios.post("/api/users/register", userData);
+  },
+  // Gets the user with the given id
+  getUser: function (id) {
+    return axios.get("/api/users/" + id);
   },
 };

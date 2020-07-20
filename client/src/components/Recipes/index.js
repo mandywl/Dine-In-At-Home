@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardHeader from "@material-ui/core/CardHeader";
@@ -20,6 +20,8 @@ import beefStroganoff from "../../assets/img/beefStroganoff.jpg";
 import honeySoyChicken from "../../assets/img/honeySoyChicken.jpg";
 import { Link } from "react-router-dom";
 import { red } from "@material-ui/core/colors";
+import { UserContext } from "../../utils/UserContext";
+import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -53,6 +55,9 @@ export default function Recipes({ recipe }) {
   const [open, setOpen] = React.useState(false);
   const [placement, setPlacement] = React.useState();
   const [added, setAdded] = useState(false);
+  const [users, setUsers] = useState([]);
+  const [userState, setUserState] = useContext(UserContext);
+  let history = useHistory();
 
   function checkAdded() {
     API.getFavoriteByRecipeID(recipe._id)
@@ -76,6 +81,7 @@ export default function Recipes({ recipe }) {
     if (added) {
       API.deleteFavoriteByRecipeId(recipe._id).then((data) => setAdded(false));
     } else {
+      console.log("user ID is", userState);
       API.addFavorite({
         title: recipe.title,
         description: recipe.description,
@@ -83,6 +89,7 @@ export default function Recipes({ recipe }) {
         thumbnail: recipe.thumbnail,
         method: recipe.method,
         recipeID: recipe._id,
+        userID: userState.id,
       }).then((data) => setAdded(true));
     }
   };
@@ -100,7 +107,12 @@ export default function Recipes({ recipe }) {
         //console.log(item.join(" "));
         API.createShoppngList({
           ingrediates: item.join(" "),
-        }).catch((err) => console.log(err));
+          userID: userState.id,
+        })
+          .then((res) => {
+            history.push("/shopping");
+          })
+          .catch((err) => console.log(err));
       }
     });
   };
@@ -173,8 +185,6 @@ export default function Recipes({ recipe }) {
             )}
             <AwesomeButton
               type="link"
-              href="/shopping"
-              target="_blank"
               onPress={() => createShoppingList(recipe.ingrediates[0])}
             >
               Generate Shopping List

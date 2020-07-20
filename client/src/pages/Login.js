@@ -64,6 +64,7 @@ export default function Login() {
           authenticated: true,
           name: res.data.name,
           email: res.data.email,
+          id: res.data._id,
         });
         history.push("/favorites");
       })
