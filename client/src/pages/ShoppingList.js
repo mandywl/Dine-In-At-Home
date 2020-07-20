@@ -233,6 +233,8 @@ export default function TransferList() {
                 }}
                 id="standard"
                 label="Add your shopping items"
+                autoFocus
+                required
               />
             </Grid>
             <Grid item xs={12} sm={3} className={classes.awesomeButton}>
