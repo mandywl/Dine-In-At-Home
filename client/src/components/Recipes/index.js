@@ -167,28 +167,39 @@ export default function Recipes({ recipe }) {
             </Typography>
           </CardContent>
           <CardActions disableSpacing>
-            {added ? (
-              <IconButton
-                aria-label="add to favorites"
-                onClick={handleAddToFavorites}
-              >
-                <FavoriteIcon style={{ color: red[500] }} />
-              </IconButton>
+            {userState.authenticated ? (
+              <>
+                {added ? (
+                  <IconButton
+                    aria-label="add to favorites"
+                    onClick={handleAddToFavorites}
+                  >
+                    <FavoriteIcon style={{ color: red[500] }} />
+                  </IconButton>
+                ) : (
+                  <IconButton
+                    aria-label="add to favorites"
+                    onClick={handleAddToFavorites}
+                    //onClick={renderme}
+                  >
+                    <FavoriteIcon />
+                  </IconButton>
+                )}
+                <AwesomeButton
+                  type="link"
+                  onPress={() => createShoppingList(recipe.ingrediates[0])}
+                >
+                  Generate Shopping List
+                </AwesomeButton>
+              </>
             ) : (
-              <IconButton
-                aria-label="add to favorites"
-                onClick={handleAddToFavorites}
-                //onClick={renderme}
+              <AwesomeButton
+                type="link"
+                onPress={() => createShoppingList(recipe.ingrediates[0])}
               >
-                <FavoriteIcon />
-              </IconButton>
+                Generate Shopping List
+              </AwesomeButton>
             )}
-            <AwesomeButton
-              type="link"
-              onPress={() => createShoppingList(recipe.ingrediates[0])}
-            >
-              Generate Shopping List
-            </AwesomeButton>
           </CardActions>
         </Card>
       </Grid>
