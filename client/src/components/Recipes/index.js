@@ -60,7 +60,8 @@ export default function Recipes({ recipe }) {
   function checkAdded() {
     API.getFavoriteByRecipeID(recipe._id)
       .then((data) => {
-        if (data.data) {
+        console.log("recipe data is ", data);
+        if (data.data && data.data.userID === userState.id) {
           setAdded(true);
         } else {
           setAdded(false);
@@ -167,22 +168,12 @@ export default function Recipes({ recipe }) {
           <CardActions disableSpacing>
             {userState.authenticated ? (
               <>
-                {added ? (
-                  <IconButton
-                    aria-label="add to favorites"
-                    onClick={handleAddToFavorites}
-                  >
-                    <FavoriteIcon style={{ color: red[500] }} />
-                  </IconButton>
-                ) : (
-                  <IconButton
-                    aria-label="add to favorites"
-                    onClick={handleAddToFavorites}
-                    //onClick={renderme}
-                  >
-                    <FavoriteIcon />
-                  </IconButton>
-                )}
+                <IconButton
+                  aria-label="add to favorites"
+                  onClick={handleAddToFavorites}
+                >
+                  <FavoriteIcon style={added ? { color: red[500] } : {}} />
+                </IconButton>
                 <AwesomeButton
                   type="link"
                   onPress={() => createShoppingList(recipe.ingrediates[0])}

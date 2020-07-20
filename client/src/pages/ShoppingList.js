@@ -10,12 +10,13 @@ import ListItemIcon from "@material-ui/core/ListItemIcon";
 import Checkbox from "@material-ui/core/Checkbox";
 import Divider from "@material-ui/core/Divider";
 import Typography from "@material-ui/core/Typography";
-import API from "../utils/API";
 import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
 import IconButton from "@material-ui/core/IconButton";
 import TextField from "@material-ui/core/TextField";
 import { AwesomeButton, AwesomeButtonProgress } from "react-awesome-button";
+
 import { UserContext } from "../utils/UserContext";
+import API from "../utils/API";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -86,13 +87,10 @@ export default function TransferList() {
 
   const deleteShoppingItem = (items) => () => {
     var deletedItems = items.filter((x) => x.checked);
-    Object.values(deletedItems).forEach((element, index) => {
-      //debugger;
+    Object.values(deletedItems).forEach((element) => {
       API.deleteShoppingList(element._id)
         .then(() => {
-          //getShoppingList();
           setLeft(left.filter((x) => !x.checked));
-          //setRight(right.filter((x) => x._id !== element._id));
           setRight(right.filter((x) => !x.checked));
         })
         .catch((err) => console.log(err));
@@ -110,7 +108,7 @@ export default function TransferList() {
         })
         .catch((err) => console.log(err));
     }
-    formObject.value = "";
+    setFormObject({});
   };
 
   useEffect(() => {

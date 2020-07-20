@@ -1,16 +1,16 @@
 import React, { useState, useContext } from "react";
-import API from "../utils/API";
+import { useHistory } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
-// import Button from "material-ui/Button";
 import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import CardActions from "@material-ui/core/CardActions";
 import { AwesomeButton } from "react-awesome-button";
+
 import { UserContext } from "../utils/UserContext";
-import { useHistory } from "react-router-dom";
+import API from "../utils/API";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -72,7 +72,6 @@ export default function Signup() {
             console.log(userState);
             history.push("/favorites");
           } else {
-            //console.log(res);
             setError(res.data.message);
           }
         })
@@ -85,7 +84,6 @@ export default function Signup() {
     }
   };
 
-  //console.log("user state is ", userState);
   return (
     <>
       <Typography className={classes.heading} color="textPrimary" variant="h2">
@@ -133,6 +131,7 @@ export default function Signup() {
                 <TextField
                   id="password"
                   name="password"
+                  type="password"
                   label="Enter your password"
                   fullWidth
                   required

@@ -1,4 +1,6 @@
 import React from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+
 import Home from "./pages/Home";
 import RecipeDetails from "./pages/RecipeDetails";
 import ShoppingList from "./pages/ShoppingList";
@@ -7,7 +9,6 @@ import NoMatch from "./pages/NoMatch";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 import ResponsiveDrawer from "./components/Nav";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { ProtectedRoute } from "./protectedRoute";
 import { UserProvider } from "./utils/UserContext";
 
@@ -24,9 +25,6 @@ function App() {
             <Route exact path="/recipes/:id">
               <RecipeDetails />
             </Route>
-            {/* <Route exact path="/shopping">
-            <ShoppingList />
-          </Route> */}
             <ProtectedRoute exact path="/favorites" component={Favorites} />
             <ProtectedRoute exact path="/shopping" component={ShoppingList} />
             <Route exact path="/signup">
