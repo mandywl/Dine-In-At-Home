@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import PropTypes from "prop-types";
 import AppBar from "@material-ui/core/AppBar";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -25,6 +25,8 @@ import LoginIcon from "@material-ui/icons/AccountCircle";
 import Tooltip from "@material-ui/core/Tooltip";
 import Avatar from "@material-ui/core/Avatar";
 import { deepOrange } from "@material-ui/core/colors";
+import { UserContext } from "../../utils/UserContext";
+import API from "../../utils/API";
 
 const drawerWidth = 240;
 
@@ -124,8 +126,15 @@ function ResponsiveDrawer(props) {
   const classes = useStyles();
   const theme = useTheme();
   const [mobileOpen, setMobileOpen] = React.useState(false);
+  const [userState, setUserState] = useContext(UserContext);
 
   const [value, setValue] = React.useState(0);
+
+  function logout() {
+    API.logout().then((res) => {
+      setUserState({ ...userState, name: "", email: "", authenticated: false });
+    });
+  }
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -217,35 +226,50 @@ function ResponsiveDrawer(props) {
                   to="/favorites"
                 />
               </Tooltip>
-              <Tooltip title="Sign up">
-                <Tab
-                  component={Link}
-                  icon={<SigninIcon />}
-                  className={classes.icons}
-                  aria-label="sign up"
-                  to="/signup"
-                />
-              </Tooltip>
-              <Tooltip title="Login">
-                <Tab
-                  component={Link}
-                  icon={<LoginIcon />}
-                  className={classes.icons}
-                  aria-label="login"
-                  to="/login"
-                />
-              </Tooltip>
-              <Tooltip title="Log out">
-                <Tab
-                  label={
-                    <Avatar alt="Remy Sharp" src="" className={classes.orange}>
-                      M
-                    </Avatar>
-                  }
-                  value="/messages"
-                  className={classes.avatar}
-                />
-              </Tooltip>
+
+              {userState.name && userState.authenticated ? (
+                <>
+                  <Tooltip title="Log out">
+                    <Tab
+                      component={Link}
+                      to="/"
+                      label={
+                        <Avatar
+                          alt="Remy Sharp"
+                          src=""
+                          className={classes.orange}
+                        >
+                          {userState.name.charAt(0).toUpperCase()}
+                        </Avatar>
+                      }
+                      value="/messages"
+                      className={classes.avatar}
+                      onClick={logout}
+                    />
+                  </Tooltip>
+                </>
+              ) : (
+                <>
+                  <Tooltip title="Sign up">
+                    <Tab
+                      component={Link}
+                      icon={<SigninIcon />}
+                      className={classes.icons}
+                      aria-label="sign up"
+                      to="/signup"
+                    />
+                  </Tooltip>
+                  <Tooltip title="Login">
+                    <Tab
+                      component={Link}
+                      icon={<LoginIcon />}
+                      className={classes.icons}
+                      aria-label="login"
+                      to="/login"
+                    />
+                  </Tooltip>
+                </>
+              )}
             </Grid>
           </Grid>
         </AppBar>

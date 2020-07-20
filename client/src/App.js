@@ -8,37 +8,40 @@ import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 import ResponsiveDrawer from "./components/Nav";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { ProtectedRoute } from "./protectedRoute";
+import { UserProvider } from "./utils/UserContext";
 
 function App() {
   return (
-    <Router>
-      <div>
-        <ResponsiveDrawer />
-        <Switch>
-          <Route exact path={["/", "/recipes"]}>
-            <Home />
-          </Route>
-          <Route exact path="/recipes/:id">
-            <RecipeDetails />
-          </Route>
-          <Route exact path="/shopping">
+    <UserProvider>
+      <Router>
+        <div>
+          <ResponsiveDrawer />
+          <Switch>
+            <Route exact path={["/", "/recipes"]}>
+              <Home />
+            </Route>
+            <Route exact path="/recipes/:id">
+              <RecipeDetails />
+            </Route>
+            {/* <Route exact path="/shopping">
             <ShoppingList />
-          </Route>
-          <Route exact path="/favorites">
-            <Favorites />
-          </Route>
-          <Route exact path="/signup">
-            <Signup />
-          </Route>
-          <Route exact path="/login">
-            <Login />
-          </Route>
-          <Route>
-            <NoMatch />
-          </Route>
-        </Switch>
-      </div>
-    </Router>
+          </Route> */}
+            <ProtectedRoute exact path="/favorites" component={Favorites} />
+            <ProtectedRoute exact path="/shopping" component={ShoppingList} />
+            <Route exact path="/signup">
+              <Signup />
+            </Route>
+            <Route exact path="/login">
+              <Login />
+            </Route>
+            <Route>
+              <NoMatch />
+            </Route>
+          </Switch>
+        </div>
+      </Router>
+    </UserProvider>
   );
 }
 
