@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import API from "../utils/API";
 import { makeStyles } from "@material-ui/core/styles";
 import FavoriteList from "../components/FavoriteList";
 import Typography from "@material-ui/core/Typography";
+import { UserContext } from "../utils/UserContext";
 
 const useStyles = makeStyles((theme) => ({
   heading: {
@@ -13,9 +14,11 @@ const useStyles = makeStyles((theme) => ({
 export default function Favorites() {
   const classes = useStyles();
   const [results, setResults] = useState([]);
+  const [userState, setUserState] = useContext(UserContext);
 
   function loadFavorites() {
-    API.getFavorites()
+    console.log("user id is ", userState);
+    API.getFavoriteByUserID(userState.id)
       .then((res) => {
         if (res.data.status === "error") {
           throw new Error(res.data.message);
