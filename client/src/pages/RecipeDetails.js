@@ -10,6 +10,10 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import beefStroganoff from "../assets/img/beefStroganoff.jpg";
 import honeySoyChicken from "../assets/img/honeySoyChicken.jpg";
+import bbqPorkRamen from "../assets/img/bbqPorkRamen.jpg";
+import beefNCheesePie from "../assets/img/beefNCheesePie.jpg";
+import chickenTaco from "../assets/img/chickenTaco.jpg";
+import crispyJapaneseChicken from "../assets/img/crispyJapaneseChicken.jpg";
 
 const useStyles = makeStyles((theme) => ({
   root: {
