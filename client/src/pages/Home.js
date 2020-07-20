@@ -2,21 +2,18 @@ import React, { useState, useEffect } from "react";
 import API from "../utils/API";
 import RecipesList from "../components/RecipesList";
 import Grid from "@material-ui/core/Grid";
+import { makeStyles } from "@material-ui/core/styles";
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    maxWidth: 1200,
+    margin: "0 auto",
+  },
+}));
 
 export default function Home(props) {
+  const classes = useStyles();
   const [results, setResults] = useState([]);
-  const [favorite, setFavorite] = useState([]);
-
-  function loadFavorites() {
-    API.getFavorites()
-      .then((res) => {
-        if (res.data.status === "error") {
-          throw new Error(res.data.message);
-        }
-        setFavorite(res.data);
-      })
-      .catch((err) => console.log(err));
-  }
 
   const getRecipes = () => {
     API.getRecipes()
@@ -26,12 +23,11 @@ export default function Home(props) {
 
   useEffect(() => {
     getRecipes();
-    loadFavorites();
   }, []);
 
   return (
     <>
-      <Grid container>
+      <Grid container justify="center" className={classes.root}>
         <RecipesList results={results} />
       </Grid>
     </>

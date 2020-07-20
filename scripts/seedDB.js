@@ -97,7 +97,7 @@ const recipeSeed = [
         ingredient19: "1 Tbsp BUTTER",
       },
     ],
-    thumbnail: "honeySoyChicken.866a9607.jpg",
+    thumbnail: "beefNCheesePie.b542cc08.jpg",
     method: [
       {
         first:
@@ -126,7 +126,7 @@ const recipeSeed = [
         ingredient13: "2 tsp RED WINE VINEGAR",
       },
     ],
-    thumbnail: "honeySoyChicken.866a9607.jpg",
+    thumbnail: "chickenTaco.3549bba3.jpg",
     method: [
       {
         first:
@@ -156,7 +156,7 @@ const recipeSeed = [
         ingredient15: "50g CRISPY NOODLES",
       },
     ],
-    thumbnail: "honeySoyChicken.866a9607.jpg",
+    thumbnail: "crispyJapaneseChicken.85154b84.jpg",
     method: [
       {
         first:
@@ -188,7 +188,7 @@ const recipeSeed = [
         ingredient12: "2 Tbsp SOY SAUCE",
       },
     ],
-    thumbnail: "honeySoyChicken.866a9607.jpg",
+    thumbnail: "bbqPorkRamen.def318d5.jpg",
     method: [
       {
         first:

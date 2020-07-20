@@ -219,7 +219,7 @@ function ResponsiveDrawer(props) {
                 </Toolbar>
                 <Tab component={Link} label="Recipes" to="/" />
                 <Tab component={Link} label="Shopping List" to="/shopping" />
-                <Tab label="Contact Me" />
+                {/* <Tab label="Contact Me" /> */}
               </Tabs>
             </Grid>
             <Grid item xs={3}>
