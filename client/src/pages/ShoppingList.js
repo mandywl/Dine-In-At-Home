@@ -101,6 +101,7 @@ export default function TransferList() {
     if (formObject) {
       API.createShoppngList({
         ingrediates: formObject.value.toUpperCase(),
+        userID: userState.id,
       })
         .then((res) => {
           setFormObject({});
