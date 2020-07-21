@@ -60,7 +60,6 @@ export default function Recipes({ recipe }) {
   function checkAdded() {
     API.getFavoriteByRecipeID(recipe._id)
       .then((data) => {
-        console.log("recipe data is ", data);
         if (data.data && data.data.userID === userState.id) {
           setAdded(true);
         } else {
