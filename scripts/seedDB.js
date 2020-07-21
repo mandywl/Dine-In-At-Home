@@ -287,7 +287,8 @@ const recipeSeed = [
         ingredient4: "1 tsp HONEY",
         ingredient5: "1 tsp WHOLEGRAIN MUSTARD",
         ingredient6: "1/4 cuo MAYO",
-        ingredient7: "2 tsp CURRY SPICES (1 part curry powder, 1 part cumin, 1/4 part turmeric)",
+        ingredient7:
+          "2 tsp CURRY SPICES (1 part curry powder, 1 part cumin, 1/4 part turmeric)",
         ingredient8: "200g BRUSSELS SPROUTS",
         ingredient9: "1/2 COS LETTUCE",
         ingredient10: "1 APPLE",
@@ -314,7 +315,6 @@ const recipeSeed = [
           "5. Cook Gravy. Return pan to medium heat. Add butter, flour and curry spices and cook, stirring for about 1 minute until fragrant. Whisk in stock, 1/4 cup at time until smooth. Reduce heat to low and cook for 1-2 mintes, stirring until thickened. Stir in resting juices from the beef and season.",
         sixth:
           "6. To serve. Divide potatoes and slaw between plates. Top with sliced beef and gravy.",
-        
       },
     ],
   },
@@ -335,7 +335,6 @@ const recipeSeed = [
         ingredient10: "600g BEEF SCHNITZEL",
         ingredient11: "100g TERIYAKI SAUCE",
         ingredient12: "15g SESAME SEEDS",
-        
       },
     ],
     thumbnail: "bbqPorkRamen.def318d5.jpg",
@@ -353,7 +352,6 @@ const recipeSeed = [
           "5. Add Sauce. When veggies are cooked, return beef and resting juices to pan, along with teriyaki sauce. Cook for 2 minutes, toss unit beef is warmed and coated.",
         sixth:
           "6. To serve. Spoon rice into bowls, top with teriyaki beef and sprinkle with sesame seeds.",
-      
       },
     ],
   },
