@@ -103,6 +103,7 @@ export default function Signup() {
                   label="Enter your name"
                   fullWidth
                   autoFocus
+                  required
                   className={classes.textfield}
                   onChange={handleInputChange}
                 />
