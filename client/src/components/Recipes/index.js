@@ -58,9 +58,8 @@ export default function Recipes({ recipe }) {
   let history = useHistory();
 
   function checkAdded() {
-    API.getFavoriteByRecipeID(recipe._id)
+    API.getFavoriteByRecipeID(recipe._id, userState.id)
       .then((data) => {
-        console.log("recipe data is ", data);
         if (data.data && data.data.userID === userState.id) {
           setAdded(true);
         } else {
@@ -75,21 +74,23 @@ export default function Recipes({ recipe }) {
   }, []);
 
   const handleAddToFavorites = (e) => {
-    console.log("adding recipes");
     e.preventDefault();
     if (added) {
       API.deleteFavoriteByRecipeId(recipe._id).then((data) => setAdded(false));
     } else {
-      console.log("user ID is", userState);
-      API.addFavorite({
-        title: recipe.title,
-        description: recipe.description,
-        ingrediates: recipe.ingrediates,
-        thumbnail: recipe.thumbnail,
-        method: recipe.method,
-        recipeID: recipe._id,
-        userID: userState.id,
-      }).then((data) => setAdded(true));
+      if (userState.name && userState.authenticated) {
+        API.addFavorite({
+          title: recipe.title,
+          description: recipe.description,
+          ingrediates: recipe.ingrediates,
+          thumbnail: recipe.thumbnail,
+          method: recipe.method,
+          recipeID: recipe._id,
+          userID: userState.id,
+        }).then((data) => setAdded(true));
+      } else {
+        history.push("/login");
+      }
     }
   };
 
@@ -100,20 +101,23 @@ export default function Recipes({ recipe }) {
   };
 
   const createShoppingList = (ingrediates) => {
-    Object.values(ingrediates).forEach((element, index) => {
-      let item = element.match(/(\b[A-Z][A-Z]+|\b[A-Z]\b)/g);
-      if (item) {
-        //console.log(item.join(" "));
-        API.createShoppngList({
-          ingrediates: item.join(" "),
-          userID: userState.id,
-        })
-          .then((res) => {
-            history.push("/shopping");
+    if (userState.name && userState.authenticated) {
+      Object.values(ingrediates).forEach((element, index) => {
+        let item = element.match(/(\b[A-Z][A-Z]+|\b[A-Z]\b)/g);
+        if (item) {
+          API.createShoppngList({
+            ingrediates: item.join(" "),
+            userID: userState.id,
           })
-          .catch((err) => console.log(err));
-      }
-    });
+            .then((res) => {
+              history.push("/shopping");
+            })
+            .catch((err) => console.log(err));
+        }
+      });
+    } else {
+      history.push("/login");
+    }
   };
 
   return (
@@ -166,29 +170,19 @@ export default function Recipes({ recipe }) {
             </Typography>
           </CardContent>
           <CardActions disableSpacing>
-            {userState.authenticated ? (
-              <>
-                <IconButton
-                  aria-label="add to favorites"
-                  onClick={handleAddToFavorites}
-                >
-                  <FavoriteIcon style={added ? { color: red[500] } : {}} />
-                </IconButton>
-                <AwesomeButton
-                  type="link"
-                  onPress={() => createShoppingList(recipe.ingrediates[0])}
-                >
-                  Generate Shopping List
-                </AwesomeButton>
-              </>
-            ) : (
-              <AwesomeButton
-                type="link"
-                onPress={() => createShoppingList(recipe.ingrediates[0])}
-              >
-                Generate Shopping List
-              </AwesomeButton>
-            )}
+            <IconButton
+              aria-label="add to favorites"
+              onClick={handleAddToFavorites}
+            >
+              <FavoriteIcon style={added ? { color: red[500] } : {}} />
+            </IconButton>
+            <AwesomeButton
+              type="link"
+              to="/shopping"
+              onPress={() => createShoppingList(recipe.ingrediates[0])}
+            >
+              Generate Shopping List
+            </AwesomeButton>
           </CardActions>
         </Card>
       </Grid>
