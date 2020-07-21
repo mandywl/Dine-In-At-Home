@@ -66,11 +66,11 @@ export default function Signup() {
             console.log("userState");
             setUserState({
               authenticated: true,
-              name: formObject.name,
-              email: formObject.email,
+              name: res.data.name,
+              email: res.data.email,
+              id: res.data._id,
             });
-            console.log(userState);
-            history.push("/favorites");
+            history.push("/");
           } else {
             setError(res.data.message);
           }
