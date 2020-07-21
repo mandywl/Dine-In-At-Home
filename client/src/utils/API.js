@@ -37,8 +37,8 @@ export default {
   getFavorite: function (id) {
     return axios.get("api/favorites/" + id);
   },
-  getFavoriteByRecipeID: function (recipeID) {
-    return axios.get("api/favorites/recipe/" + recipeID);
+  getFavoriteByRecipeID: function (recipeID, userID) {
+    return axios.get("api/favorites/recipe/" + recipeID + "/" + userID);
   },
   getFavoriteByUserID: function (UserID) {
     return axios.get("api/favorites/user/" + UserID);

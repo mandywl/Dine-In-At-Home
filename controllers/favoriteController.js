@@ -13,7 +13,10 @@ module.exports = {
       .catch((err) => res.status(422).json(err));
   },
   findByRecipeId: function (req, res) {
-    db.Favorite.findOne({ recipeID: req.params.id })
+    db.Favorite.findOne({
+      recipeID: req.params.recipeID,
+      userID: req.params.userID,
+    })
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },

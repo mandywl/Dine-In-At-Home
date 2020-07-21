@@ -58,7 +58,7 @@ export default function Recipes({ recipe }) {
   let history = useHistory();
 
   function checkAdded() {
-    API.getFavoriteByRecipeID(recipe._id)
+    API.getFavoriteByRecipeID(recipe._id, userState.id)
       .then((data) => {
         if (data.data && data.data.userID === userState.id) {
           setAdded(true);
@@ -105,7 +105,6 @@ export default function Recipes({ recipe }) {
       Object.values(ingrediates).forEach((element, index) => {
         let item = element.match(/(\b[A-Z][A-Z]+|\b[A-Z]\b)/g);
         if (item) {
-          //console.log(item.join(" "));
           API.createShoppngList({
             ingrediates: item.join(" "),
             userID: userState.id,
