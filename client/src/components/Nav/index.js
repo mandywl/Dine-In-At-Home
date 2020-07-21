@@ -93,6 +93,9 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.getContrastText(deepOrange[500]),
     backgroundColor: deepOrange[500],
   },
+  userName: {
+    color: deepOrange[500],
+  },
 }));
 
 function TabPanel(props) {
@@ -157,6 +160,12 @@ function ResponsiveDrawer(props) {
   const drawer = (
     <div>
       <div className={classes.toolbar} />
+      <ListItemLink>
+        <ListItemText
+          className={classes.userName}
+          primary={userState.name.toUpperCase()}
+        />
+      </ListItemLink>
       <Divider />
       <List component="nav" aria-label="secondary mailbox folders">
         <ListItemLink href="/">
@@ -168,9 +177,22 @@ function ResponsiveDrawer(props) {
         <ListItemLink href="/favorites">
           <ListItemText primary="Favorites" />
         </ListItemLink>
-        <ListItemLink href="/signup">
-          <ListItemText primary="Sign up" />
-        </ListItemLink>
+        {userState.name && userState.authenticated ? (
+          <>
+            <ListItemLink onClick={logout}>
+              <ListItemText primary="Log out" />
+            </ListItemLink>
+          </>
+        ) : (
+          <>
+            <ListItemLink href="/signup">
+              <ListItemText primary="Sign up" />
+            </ListItemLink>
+            <ListItemLink href="/login">
+              <ListItemText primary="Log in" />
+            </ListItemLink>
+          </>
+        )}
       </List>
     </div>
   );
@@ -223,16 +245,6 @@ function ResponsiveDrawer(props) {
               </Tabs>
             </Grid>
             <Grid item xs={3}>
-              <Tooltip title="Favorites">
-                <Tab
-                  component={Link}
-                  icon={<FavoriteIcon />}
-                  className={classes.icons}
-                  aria-label="favorite"
-                  to="/favorites"
-                />
-              </Tooltip>
-
               {userState.name && userState.authenticated ? (
                 <>
                   <Tooltip title="Log out">
@@ -276,6 +288,15 @@ function ResponsiveDrawer(props) {
                   </Tooltip>
                 </>
               )}
+              <Tooltip title="Favorites">
+                <Tab
+                  component={Link}
+                  icon={<FavoriteIcon />}
+                  className={classes.icons}
+                  aria-label="favorite"
+                  to="/favorites"
+                />
+              </Tooltip>
             </Grid>
           </Grid>
         </AppBar>
