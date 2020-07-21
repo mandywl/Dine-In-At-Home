@@ -66,7 +66,7 @@ export default function Favourites({
   function checkAdded() {
     API.getFavorite(id)
       .then((data) => {
-        if (data.data) {
+        if (data.data && data.data.userID === userState.id) {
           setAdded(true);
         } else {
           setAdded(false);
