@@ -61,16 +61,14 @@ export default function Signup() {
         email: formObject.email,
       })
         .then((res) => {
-          console.log("res is ", res);
           if (res.status === 200) {
-            console.log("userState");
             setUserState({
               authenticated: true,
-              name: formObject.name,
-              email: formObject.email,
+              name: res.data.name,
+              email: res.data.email,
+              id: res.data._id,
             });
-            console.log(userState);
-            history.push("/favorites");
+            history.push("/");
           } else {
             setError(res.data.message);
           }
@@ -105,6 +103,7 @@ export default function Signup() {
                   label="Enter your name"
                   fullWidth
                   autoFocus
+                  required
                   className={classes.textfield}
                   onChange={handleInputChange}
                 />

@@ -63,22 +63,6 @@ export default function Favourites({
   const [userState, setUserState] = useContext(UserContext);
   let history = useHistory();
 
-  function checkAdded() {
-    API.getFavorite(id)
-      .then((data) => {
-        if (data.data) {
-          setAdded(true);
-        } else {
-          setAdded(false);
-        }
-      })
-      .catch((err) => console.log(err));
-  }
-
-  useEffect(() => {
-    checkAdded();
-  }, []);
-
   const handleClick = (newPlacement) => (event) => {
     setAnchorEl(event.currentTarget);
     setOpen((prev) => placement !== newPlacement || !prev);
@@ -89,7 +73,6 @@ export default function Favourites({
     Object.values(ingrediates).forEach((element, index) => {
       let item = element.match(/(\b[A-Z][A-Z]+|\b[A-Z]\b)/g);
       if (item) {
-        //console.log(item.join(" "));
         API.createShoppngList({
           ingrediates: item.join(" "),
           userID: userState.id,

@@ -22,7 +22,6 @@ export default function Favorites() {
   const [userState, setUserState] = useContext(UserContext);
 
   function loadFavorites() {
-    console.log("user id is ", userState);
     API.getFavoriteByUserID(userState.id)
       .then((res) => {
         if (res.data.status === "error") {

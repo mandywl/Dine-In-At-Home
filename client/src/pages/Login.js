@@ -53,20 +53,18 @@ export default function Login() {
 
   function handleFormSubmit(event) {
     event.preventDefault();
-    console.log("formObject is ", formObject);
     API.login({
       username: formObject.username,
       password: formObject.password,
     })
       .then((res) => {
-        console.log("res is ", res);
         setUserState({
           authenticated: true,
           name: res.data.name,
           email: res.data.email,
           id: res.data._id,
         });
-        history.push("/favorites");
+        history.push("/");
       })
       .catch((err) => {
         console.log(err);
