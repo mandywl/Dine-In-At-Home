@@ -61,9 +61,7 @@ export default function Signup() {
         email: formObject.email,
       })
         .then((res) => {
-          console.log("res is ", res);
           if (res.status === 200) {
-            console.log("userState");
             setUserState({
               authenticated: true,
               name: res.data.name,
