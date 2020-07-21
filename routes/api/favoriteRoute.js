@@ -13,9 +13,10 @@ router
   .delete(favoriteController.remove);
 
 router
-  .route("/recipe/:id")
-  .get(favoriteController.findByRecipeId)
-  .delete(favoriteController.removeByRecipeId);
+  .route("/recipe/:recipeID/:userID")
+  .get(favoriteController.findByRecipeId);
+
+router.route("/recipe/:id").delete(favoriteController.removeByRecipeId);
 
 router.route("/user/:id").get(favoriteController.findByUserId);
 
