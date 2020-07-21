@@ -238,6 +238,123 @@ const recipeSeed = [
       },
     ],
   },
+  {
+    title: "Thai Green Fish Curry",
+    description: "Ready in 30 minutes and serves 5 people",
+    ingrediates: [
+      {
+        ingredient1: "2 cups JASMINE RICE",
+        ingredient2: "3 cups water",
+        ingredient3: "1 BABY BOK CHOY",
+        ingredient4: "1/2 BROWN ONION",
+        ingredient5: "1 BROCCOLI",
+        ingredient6: "2 CARROTS",
+        ingredient7: "600g FISH FILLETS",
+        ingredient8: "40g THAI GREEN CURRY PASTE",
+        ingredient9: "pinch of CHILL FLAKES",
+        ingredient10: "1/2 cup CHICKEN STOCK",
+        ingredient11: "425ml COCONUT MILK",
+        ingredient12: "1 Tbsp SOY SAUCE",
+        ingredient13: "1 tsp FISH SAUCE",
+      },
+    ],
+    thumbnail: "bbqPorkRamen.def318d5.jpg",
+    method: [
+      {
+        first:
+          "1. Combine rice, water and salt in a medium pot and bring to the boil. As soon as it boils, cover with a lid and reduce to lowest heat to cook for 12 minutes. Turn off heat and leave to steam, still covered, for a further 8 minutes. Do not lift lid during cooking.",
+        second:
+          "2. Thinly slice bok choy; thinly slice onion; cut broccoli into small florets; cut carrots in half lengthways then thinly slice; pat fish dry and cut into 3-4cm pieces.",
+        thrid:
+          "3. Heat a little oil in a large, deep fry-pan or pot on medium heat and cook onion and carrots for 3-4 minutes, until softenend.Add curry paste and chill flakes and cook, stirring for about 1 mintute =, until fragrant.",
+        fourth:
+          "4. Add stock, coconut milk, soy sauce and fish sauce and stir to combine. Bring to a simmer then add broccoli and fish. cover with a lid and cook for about 4 minutes, until broccoli is tender and fish is ooked through, season to taste with soy sauce or fish sauce.",
+        fifth:
+          "5. Fluff up cooked rice with a fork, stir through bok choy and season to taste. ",
+        sixth:
+          "6. To serve, divide rice between bowls and top with Thai green fish curry.",
+      },
+    ],
+  },
+  {
+    title: "Beef Rump Steaks",
+    description: "Ready in 35 minutes and serves 5 people",
+    ingrediates: [
+      {
+        ingredient1: "800g POPATOES",
+        ingredient2: "Juice of 1 LEMON",
+        ingredient3: "600g BEEF RUMP STEAKS",
+        ingredient4: "1 tsp HONEY",
+        ingredient5: "1 tsp WHOLEGRAIN MUSTARD",
+        ingredient6: "1/4 cuo MAYO",
+        ingredient7:
+          "2 tsp CURRY SPICES (1 part curry powder, 1 part cumin, 1/4 part turmeric)",
+        ingredient8: "200g BRUSSELS SPROUTS",
+        ingredient9: "1/2 COS LETTUCE",
+        ingredient10: "1 APPLE",
+        ingredient11: "1 CARROT",
+        ingredient12: "25g SLICED ALMONDS",
+        ingredient13: "1 Tbsp BUTTER",
+        ingredient12: "1 Tbsp FLOUR",
+        ingredient12: "1/2 tsp CURRY SPICES",
+        ingredient12: "1 cup BEEF STOCK",
+      },
+    ],
+    thumbnail: "bbqPorkRamen.def318d5.jpg",
+    method: [
+      {
+        first:
+          "1. PREP AND COOK POTATOES. Preheat oven to 220c, Slice potatoes into 0.5cm rounds. Toss on two lined oven trays with little oil. Season well and arrange in a signle layer. Roast for about 25 minutes, until golden and tender. Turnover potatoes halfway, to ensure even cooking. ",
+        second:
+          "2. PREP DRESSING. Combine all dressing ingredients in a bowl and set aside.",
+        thrid:
+          "3. PREP SLAW. Thinly slice brussels sprouts then add to bowl with dressing and toss to combine. Thinly slice lettuce and grate apple nd carrot. just before serving add remaining salad ingredients to bowl with dressing, stir to combine ans season to teast.",
+        fourth:
+          "4. Coom Beef. When potatoes have 15 minutes remaing, heat a large fry-pan or grill pan on high heat. Pat beef dry, season and drizzle with oil. Cook for about 3 minutes each side for medium, or until cooked to your liking. Rest, covered before slicing thinly.",
+        fifth:
+          "5. Cook Gravy. Return pan to medium heat. Add butter, flour and curry spices and cook, stirring for about 1 minute until fragrant. Whisk in stock, 1/4 cup at time until smooth. Reduce heat to low and cook for 1-2 mintes, stirring until thickened. Stir in resting juices from the beef and season.",
+        sixth:
+          "6. To serve. Divide potatoes and slaw between plates. Top with sliced beef and gravy.",
+      },
+    ],
+  },
+  {
+    title: "Teriyaki Beef",
+    description: "Ready in 35 minutes and serves 5 people",
+    ingrediates: [
+      {
+        ingredient1: "2 cups RICE",
+        ingredient2: "3 cups water",
+        ingredient3: "1 BROWN ONION",
+        ingredient4: "2 CARROTS",
+        ingredient5: "1/2 PUNNET MUSHROOMS",
+        ingredient6: "1 BROCCOLI",
+        ingredient7: "1 tsp grated GINGER",
+        ingredient8: "3 Tbsp water",
+        ingredient9: "2 Tbsp SOY SAUCE",
+        ingredient10: "600g BEEF SCHNITZEL",
+        ingredient11: "100g TERIYAKI SAUCE",
+        ingredient12: "15g SESAME SEEDS",
+      },
+    ],
+    thumbnail: "bbqPorkRamen.def318d5.jpg",
+    method: [
+      {
+        first:
+          "1. Cook Rice. Combine rice, water and salt in a medium pot and bring to the boil. As soon as it boils, cover with a lid and reduce to lowest heat to cook for 12 minutes. Turn off heat and leave to steam, still covered, for a further 8 minutes. Do not lift lid during cooking.",
+        second:
+          "2. Prep Veggies. Thinly Slice onion, cut carrots in half lengthways and thinly slice, thinly lice mushrooms and cut broccoli in to florets. Pat beef dry and cut into strips",
+        thrid:
+          "3. Cook Beef. Heat a little oil in a large fry-pan on high heat. Cook beef, in batches for about 1 minute until browned and rest.",
+        fourth:
+          "4. Cook Veggies. Wipe pan clean and return to high heat with a little oil. Cook onion and carrots about 4 minutes until softened. Add mushrooms, broccoli, ginger, water and soy sauce and cook for 4 minutes.",
+        fifth:
+          "5. Add Sauce. When veggies are cooked, return beef and resting juices to pan, along with teriyaki sauce. Cook for 2 minutes, toss unit beef is warmed and coated.",
+        sixth:
+          "6. To serve. Spoon rice into bowls, top with teriyaki beef and sprinkle with sesame seeds.",
+      },
+    ],
+  },
 ];
 
 db.Recipe.remove({})
