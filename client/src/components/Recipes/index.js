@@ -53,20 +53,21 @@ export default function Recipes({ recipe }) {
   const [open, setOpen] = React.useState(false);
   const [placement, setPlacement] = React.useState();
   const [added, setAdded] = useState(false);
-  const [users, setUsers] = useState([]);
   const [userState, setUserState] = useContext(UserContext);
   let history = useHistory();
 
   function checkAdded() {
-    API.getFavoriteByRecipeID(recipe._id, userState.id)
-      .then((data) => {
-        if (data.data && data.data.userID === userState.id) {
-          setAdded(true);
-        } else {
-          setAdded(false);
-        }
-      })
-      .catch((err) => console.log(err));
+    if (userState.authenticated) {
+      API.getFavoriteByRecipeID(recipe._id, userState.id)
+        .then((data) => {
+          if (data.data && data.data.userID === userState.id) {
+            setAdded(true);
+          } else {
+            setAdded(false);
+          }
+        })
+        .catch((err) => console.log(err));
+    }
   }
 
   useEffect(() => {
@@ -160,7 +161,7 @@ export default function Recipes({ recipe }) {
             className={classes.media}
             component={Link}
             image={`/static/media/${recipe.thumbnail}`}
-            // image={honeySoyChicken}
+            //image={teriyakiBeef}
             to={"/recipes/" + recipe._id}
             title="Paella dish"
           />
