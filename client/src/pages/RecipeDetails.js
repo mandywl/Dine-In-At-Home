@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import Grid from "@material-ui/core/Grid";
 import { useParams } from "react-router-dom";
 import API from "../utils/API";
@@ -14,6 +14,7 @@ import bbqPorkRamen from "../assets/img/bbqPorkRamen.jpg";
 import beefNCheesePie from "../assets/img/beefNCheesePie.jpg";
 import chickenTaco from "../assets/img/chickenTaco.jpg";
 import crispyJapaneseChicken from "../assets/img/crispyJapaneseChicken.jpg";
+import { UserContext } from "../utils/UserContext";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -35,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function RecipeDetails() {
   const classes = useStyles();
-
+  const [userState, setUserState] = useContext(UserContext);
   const [recipe, setRecipe] = useState({});
 
   // When this component mounts, grab the recipe with the _id of props.match.params.id
@@ -48,6 +49,17 @@ export default function RecipeDetails() {
       .catch((err) => console.log(err));
   };
   useEffect(() => {
+    API.isLoggedIn()
+      .then((res) => {
+        console.log("res is", res.data);
+        setUserState({
+          authenticated: true,
+          name: res.data.name,
+          email: res.data.email,
+          id: res.data._id,
+        });
+      })
+      .catch((err) => console.log(err));
     getRecipe();
   }, []);
 

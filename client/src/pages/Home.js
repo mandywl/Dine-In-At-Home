@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import API from "../utils/API";
+import { UserContext } from "../utils/UserContext";
 import RecipesList from "../components/RecipesList";
 import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
@@ -14,6 +15,7 @@ const useStyles = makeStyles((theme) => ({
 export default function Home(props) {
   const classes = useStyles();
   const [results, setResults] = useState([]);
+  const [, setUserState] = useContext(UserContext);
 
   const getRecipes = () => {
     API.getRecipes()
@@ -22,6 +24,17 @@ export default function Home(props) {
   };
 
   useEffect(() => {
+    API.isLoggedIn()
+      .then((res) => {
+        console.log("res is", res.data);
+        setUserState({
+          authenticated: true,
+          name: res.data.name,
+          email: res.data.email,
+          id: res.data._id,
+        });
+      })
+      .catch((err) => console.log(err));
     getRecipes();
   }, []);
 
