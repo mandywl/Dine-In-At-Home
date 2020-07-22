@@ -14,6 +14,9 @@ import bbqPorkRamen from "../assets/img/bbqPorkRamen.jpg";
 import beefNCheesePie from "../assets/img/beefNCheesePie.jpg";
 import chickenTaco from "../assets/img/chickenTaco.jpg";
 import crispyJapaneseChicken from "../assets/img/crispyJapaneseChicken.jpg";
+import teriyakiBeef from "../assets/img/teriyakiBeef.jpg";
+import fishCurry from "../assets/img/fishCurry.jpg";
+import beefRumpSteaks from "../assets/img/beefRumpSteaks.jpg";
 import { UserContext } from "../utils/UserContext";
 
 const useStyles = makeStyles((theme) => ({

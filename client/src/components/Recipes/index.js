@@ -161,7 +161,7 @@ export default function Recipes({ recipe }) {
             className={classes.media}
             component={Link}
             image={`/static/media/${recipe.thumbnail}`}
-            // image={honeySoyChicken}
+            //image={teriyakiBeef}
             to={"/recipes/" + recipe._id}
             title="Paella dish"
           />
