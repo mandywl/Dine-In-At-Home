@@ -258,7 +258,7 @@ const recipeSeed = [
         ingredient13: "1 tsp FISH SAUCE",
       },
     ],
-    thumbnail: "bbqPorkRamen.def318d5.jpg",
+    thumbnail: "fishCurry.6648171c.jpg",
     method: [
       {
         first:
@@ -300,7 +300,7 @@ const recipeSeed = [
         ingredient12: "1 cup BEEF STOCK",
       },
     ],
-    thumbnail: "bbqPorkRamen.def318d5.jpg",
+    thumbnail: "beefRumpSteaks.f7676ae6.jpg",
     method: [
       {
         first:
@@ -337,7 +337,7 @@ const recipeSeed = [
         ingredient12: "15g SESAME SEEDS",
       },
     ],
-    thumbnail: "bbqPorkRamen.def318d5.jpg",
+    thumbnail: "teriyakiBeef.73b2021c.jpg",
     method: [
       {
         first:
