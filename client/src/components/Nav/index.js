@@ -169,12 +169,19 @@ function ResponsiveDrawer(props) {
   const drawer = (
     <div>
       <div className={classes.toolbar} />
-      <ListItemLink>
-        <ListItemText
-          className={classes.userName}
-          primary={userState.name.toUpperCase()}
-        />
-      </ListItemLink>
+      {userState.name && userState.authenticated ? (
+        <>
+          <ListItemLink>
+            <ListItemText
+              className={classes.userName}
+              primary={userState.name.toUpperCase()}
+            />
+          </ListItemLink>
+        </>
+      ) : (
+        <></>
+      )}
+      ,
       <Divider />
       <List component="nav" aria-label="secondary mailbox folders">
         <ListItemLink href="/">
