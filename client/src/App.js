@@ -9,6 +9,7 @@ import NoMatch from "./pages/NoMatch";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 import ResponsiveDrawer from "./components/Nav";
+import Footer from "./components/Footer";
 import { ProtectedRoute } from "./protectedRoute";
 import { UserProvider } from "./utils/UserContext";
 
@@ -37,6 +38,7 @@ function App() {
               <NoMatch />
             </Route>
           </Switch>
+          <Footer />
         </div>
       </Router>
     </UserProvider>

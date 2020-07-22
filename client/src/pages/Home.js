@@ -9,6 +9,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: 1200,
     margin: "0 auto",
+    minHeight: "calc(100vh - 250px)",
   },
 }));
 

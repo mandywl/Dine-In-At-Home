@@ -109,7 +109,7 @@ export default function TransferList() {
         })
         .catch((err) => console.log(err));
     }
-    setFormObject({});
+    formObject.value = "";
   };
 
   useEffect(() => {

@@ -5,7 +5,7 @@ import axios from "axios";
 export default {
   // Gets all books
   getRecipes: function () {
-    return axios.get("api/recipes");
+    return axios.get("/api/recipes");
   },
   // Gets the book with the given id
   getRecipe: function (id) {
@@ -29,19 +29,19 @@ export default {
     return axios.delete("/api/shoppinglist/" + id);
   },
   getShoppingListByUserID: function (UserID) {
-    return axios.get("api/shoppinglist/user/" + UserID);
+    return axios.get("/api/shoppinglist/user/" + UserID);
   },
   getFavorites: function () {
-    return axios.get("api/favorites");
+    return axios.get("/api/favorites");
   },
   getFavorite: function (id) {
-    return axios.get("api/favorites/" + id);
+    return axios.get("/api/favorites/" + id);
   },
   getFavoriteByRecipeID: function (recipeID, userID) {
-    return axios.get("api/favorites/recipe/" + recipeID + "/" + userID);
+    return axios.get("/api/favorites/recipe/" + recipeID + "/" + userID);
   },
   getFavoriteByUserID: function (UserID) {
-    return axios.get("api/favorites/user/" + UserID);
+    return axios.get("/api/favorites/user/" + UserID);
   },
   deleteFavorite: function (id) {
     return axios.delete("/api/favorites/" + id);
@@ -58,7 +58,7 @@ export default {
   },
 
   isLoggedIn: function () {
-    return axios.get("/api/users/isLoggedIn");
+    return axios.get("api/users/isLoggedIn");
   },
 
   logout: function () {

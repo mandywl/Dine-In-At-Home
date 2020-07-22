@@ -1,0 +1,15 @@
+footer {
+  background-color: rgb(31, 31, 31);
+  padding: 20px;
+  color: #ffffff;
+  margin-top: 60px;
+}
+
+.contactLink {
+  color: #ffffff;
+  text-decoration: underline;
+}
+
+.contactLink:hover {
+  color: rgb(96, 153, 124);
+}
