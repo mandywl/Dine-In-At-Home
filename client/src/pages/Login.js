@@ -22,6 +22,10 @@ const useStyles = makeStyles((theme) => ({
     },
     padding: theme.spacing(3, 2),
   },
+  container: {
+    padding: theme.spacing(3, 2),
+    minHeight: "calc(100vh - 250px)",
+  },
   heading: {
     textAlign: "center",
   },
@@ -77,12 +81,7 @@ export default function Login() {
       <Typography className={classes.heading} color="textPrimary" variant="h2">
         Log in
       </Typography>
-      <Grid
-        container
-        justify="center"
-        alignItems="center"
-        className={classes.root}
-      >
+      <Grid container justify="center" className={classes.container}>
         <Grid item xs={12} sm={6}>
           <Card className={classes.root}>
             <form onSubmit={handleFormSubmit}>
