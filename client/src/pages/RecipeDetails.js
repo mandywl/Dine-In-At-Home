@@ -23,6 +23,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
     // margin: theme.spacing(5, 2),
+    minHeight: "calc(100vh - 200px)",
   },
   paper: {
     // width: 600,
