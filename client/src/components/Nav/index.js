@@ -27,6 +27,7 @@ import Avatar from "@material-ui/core/Avatar";
 import { deepOrange } from "@material-ui/core/colors";
 import { UserContext } from "../../utils/UserContext";
 import API from "../../utils/API";
+import { useHistory } from "react-router-dom";
 
 const drawerWidth = 240;
 
@@ -130,7 +131,7 @@ function ResponsiveDrawer(props) {
   const theme = useTheme();
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [userState, setUserState] = useContext(UserContext);
-
+  let history = useHistory();
   const [value, setValue] = React.useState(0);
 
   function logout() {
@@ -143,6 +144,14 @@ function ResponsiveDrawer(props) {
         authenticated: false,
       });
     });
+  }
+
+  function shoppingRoute() {
+    history.push("/shopping");
+  }
+
+  function favoriteRoute() {
+    history.push("/favorites");
   }
 
   const handleChange = (event, newValue) => {
@@ -171,10 +180,10 @@ function ResponsiveDrawer(props) {
         <ListItemLink href="/">
           <ListItemText primary="Recipes" />
         </ListItemLink>
-        <ListItemLink href="/shopping">
+        <ListItemLink onClick={shoppingRoute}>
           <ListItemText primary="Shopping List" />
         </ListItemLink>
-        <ListItemLink href="/favorites">
+        <ListItemLink onClick={favoriteRoute}>
           <ListItemText primary="Favorites" />
         </ListItemLink>
         {userState.name && userState.authenticated ? (
