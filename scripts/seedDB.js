@@ -35,6 +35,18 @@ const recipeSeed = [
           "1, Bring a large pot of salted water to the boil. Dice potatoes 3cm and cook in pot of boiling water for 15-18 minutes, until very soft. Drain and return to pot with salt, milk and butter. Mash until smooth and season to taste. ",
         second:
           "2, While potatoes cook, finely dice onion; cut carrots in half and thinly slice on an angle; thinly slice mushrooms.",
+        third:
+          "3, Heat a little oil in a large fry-pan on high heat. Pat beef dry and cut any larger pieces in half.",
+        forth:
+          "4, Add beef to pan and cook, in batches, for about 1 minute each side, until browned. Set aside, covered to rest. Wipe pan clean between batches and add a little more oil, if needed and allow the pan to come back up to high heat.",
+        fifth:
+          "5, Return pan to heat with a little more oil. Cook onion, carrots and mushrooms for about 5 minutes, until browned.",
+        sixth:
+          "6, Reduce heat to medium-high, add Strogaoff spices and cook a further 1 minute, stirring, until fragrant. Add stock, cream, mustard, vinegar and peas, bring to a simmer and cook for about 3 minutes, until sauce is thickened and veggies are tender.",
+        seventh:
+          "7, While sauce is simmering, slice beef 1cm. When sauce is thickened, discard beef resting juices and add beef to pan and cook a further 1 minute, until beef is warmed through. Season to taste.",
+        eighth:
+          "8, To serve, spoon mash onto plates and top with beef Stroganoff.",
       },
     ],
   },
@@ -67,6 +79,16 @@ const recipeSeed = [
       {
         first:
           "1. Prep Chicken. Preheat oven to 200 degees. Mix all chicken ingredients (1kg chicken drumsticks, 1 and half tsp grated ginger, 3 Tbsp honey, 1/4 cup soy source, 2 cloves minced garlic, 1 Tbsp white wine vinegar, 1tsp ground black pepper, 15g sesame seeds) in a large bowl and pour into a large, lined baking dish.",
+        second:
+          "2, Cook Chicken. Spread chicken out in a single layer and bake in oven for 20 minutes. Remove and turn to coat in glaze. Bake for a further 20-25 minutes, until chicken is cooked through and glaze is sticky.",
+        third:
+          "3, Cook Rice. Combine rice, water and a pinch of salt in a pot and bring to boil. Once boiling, cover with a lid and reduce to lowest heat to cook for 12 minutes. Turn off the heat and steam, covered, for 8 more minutes. Do not lift lid during cooking.",
+        forth:
+          "4, Prep stir-fry. Cut broccoli into small florets, thinly slice mushrooms and bok choy.",
+        fifth:
+          "5, Cook stir-fry. When chicken has 7 minutes remaining, heat sesame oil in a large fry-pan on medium-high heat. Cook broccoli and mushrooms for about 4 minutes, until tender. Add bok choy and cook for a further 1 minute, until bright green and tender. Remove from heat, season and stir through sweet chili sauce.",
+        sixth:
+          "6, To serve. Place 3/4 cup cooked rice onto plates and top with chicken and any leftover glaze from baking dish. Serve stir-fry on the side",
       },
     ],
   },
