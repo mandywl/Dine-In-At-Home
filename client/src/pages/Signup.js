@@ -45,7 +45,7 @@ const useStyles = makeStyles((theme) => ({
 export default function Signup() {
   const classes = useStyles();
 
-  const [userState, setUserState] = useContext(UserContext);
+  const [, setUserState] = useContext(UserContext);
   const [error, setError] = useState();
   const [formObject, setFormObject] = useState({});
   let history = useHistory();

@@ -1,29 +1,78 @@
-# Create React Express App
+<h1 align="center">Dine In At Home</h1>
 
-## About This Boilerplate
+> Dine in at Home is a simple shopping list generator designed to give foodies the convenience to create their shopping list in minutes. Users can login, sign up, save favorite recipes and generate a shopping list based on their favorite recipes. This is also a PWA application which users can install on either desktop or mobile.
 
-This setup allows for a Node/Express/React app which can be easily deployed to Heroku.
+### ✨ [Github Repo](https://github.com/mandywl/Dine-In-At-Home)
 
-The front-end React app will auto-reload as it's updated via webpack dev server, and the backend Express app will auto-reload independently with nodemon.
+### 🏠 [Deployed Url](https://dine-in-at-home.herokuapp.com/)
 
-## Starting the app locally
+<div align="center">
+<img alt="Dine In At Home" src= "" width= 60%/>
+</div>
 
-Start by installing front and backend dependencies. While in this directory, run the following command:
+## Install
 
-```
-npm install
-```
+> > ```sh
+> > npm install;
+> > ```
+>
+> The above will install the project dependencies.
 
-This should install node modules within the server and the client folder.
+## Populate the database
 
-After both installations complete, run the following command in your terminal:
+> > ```sh
+> > npm run seed;
+> > ```
+>
+> The above will initially populate the database. This should insert a few records into the MongoDB.
 
-```
-npm start
-```
+## Build
 
-Your app should now be running on <http://localhost:3000>. The Express server should intercept any AJAX requests from the client.
+> > ```sh
+> > npm build;
+> > ```
+> >
+> > Builds the app for production to the `build` folder.<br>
+> > It correctly bundles React in production mode and optimizes the build for the best performance.
+>
+> The build is minified and the filenames include the hashes.<br>
+> Your app is ready to be deployed!
 
-## Deployment (Heroku)
+## Usage
 
-To deploy, simply add and commit your changes, and push to Heroku. As is, the NPM scripts should take care of the rest.
+> > ```sh
+> > Clone the repository.
+> > Run npm run seed.
+> > Run npm start.
+> >
+> > ```
+>
+> Runs the app in the development mode.<br />
+> Open [http://localhost:8080](http://localhost:8080) to view it in the browser.
+>
+> The page will reload if you make edits.<br />
+> You will also see any lint errors in the console.
+>
+> or use `npm run watch` for development.
+
+## Run tests
+
+> > ```sh
+> > npm run test
+> > ```
+>
+> The above will run the specidfied linting code in [`.eslintrc.json`](https://github.com/mandywl/shopping-cart/blob/master/.eslintrc.json).
+>
+> The jest module is also setup to run on test.
+>
+> Although currently, there are no jest module tests specified in the project.
+
+## Author
+
+👤 **Mandy Wells-Lakeland**
+
+- Website: https://mandy-wellslakeland.herokuapp.com/
+- Github: [@mandywl](https://github.com/mandywl)
+- LinkedIn: [@mandywellslakeland](https://www.linkedin.com/in/mandywellslakeland/)
+
+---

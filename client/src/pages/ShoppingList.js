@@ -23,6 +23,7 @@ const useStyles = makeStyles((theme) => ({
     margin: "auto",
     width: "100%",
     maxWidth: 860,
+    minHeight: "calc(100vh - 200px)",
   },
   section1: {
     margin: theme.spacing(3, 2),
@@ -62,7 +63,7 @@ export default function TransferList() {
   const [left, setLeft] = React.useState([]);
   const [right, setRight] = React.useState([]);
   const [formObject, setFormObject] = useState({});
-  const [userState, setUserState] = useContext(UserContext);
+  const [userState] = useContext(UserContext);
 
   const numberOfChecked = (items) =>
     items.map((x) => x.checked).filter(Boolean).length;

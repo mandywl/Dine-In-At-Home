@@ -27,6 +27,7 @@ export default function Footer() {
           className="contactLink"
           href="https://mandy-wellslakeland.herokuapp.com/"
           target="_blank"
+          rel="noopener noreferrer"
         >
           Mandy Wells-Lakeland
         </a>
