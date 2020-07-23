@@ -20,7 +20,11 @@ const useStyles = makeStyles((theme) => ({
 export default function Favorites() {
   const classes = useStyles();
   const [results, setResults] = useState([]);
+<<<<<<< HEAD
   const [userState] = useContext(UserContext);
+=======
+  const [userState, setUserState] = useContext(UserContext);
+>>>>>>> master
 
   function loadFavorites() {
     API.getFavoriteByUserID(userState.id)
