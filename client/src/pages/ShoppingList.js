@@ -23,6 +23,7 @@ const useStyles = makeStyles((theme) => ({
     margin: "auto",
     width: "100%",
     maxWidth: 860,
+    minHeight: "calc(100vh - 200px)",
   },
   section1: {
     margin: theme.spacing(3, 2),

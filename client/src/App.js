@@ -33,7 +33,25 @@ function App() {
   }, []);
 
   if (loading) {
-    return <p>Loading...</p>;
+    return (
+      <Router>
+        <div>
+          <ResponsiveDrawer />
+          <Switch>
+            <Route exact path={["/", "/recipes"]} component={Home} />
+            <Route exact path="/recipes/:id">
+              <RecipeDetails />
+            </Route>
+            <Route exact path="/favorites" component={Login} />
+            <Route exact path="/shopping" component={Login} />
+            <Route exact path="/signup" component={Signup}></Route>
+            <Route exact path="/login" component={Login}></Route>
+            <Route component={NoMatch}></Route>
+          </Switch>
+          <Footer />
+        </div>
+      </Router>
+    );
   }
   return (
     <Router>
