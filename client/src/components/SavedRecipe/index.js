@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 import React, { useContext } from "react";
-=======
-import React, { useState, useContext } from "react";
->>>>>>> master
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardHeader from "@material-ui/core/CardHeader";
@@ -72,11 +68,7 @@ export default function Favourites({
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [open, setOpen] = React.useState(false);
   const [placement, setPlacement] = React.useState();
-<<<<<<< HEAD
   const [userState] = useContext(UserContext);
-=======
-  const [userState, setUserState] = useContext(UserContext);
->>>>>>> master
   let history = useHistory();
 
   const handleClick = (newPlacement) => (event) => {
