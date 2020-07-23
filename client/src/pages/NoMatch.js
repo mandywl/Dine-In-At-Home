@@ -6,8 +6,8 @@ import { makeStyles } from "@material-ui/core/styles";
 const useStyles = makeStyles({
   root: {
     textAlign: "center",
+    minHeight: "calc(100vh - 200px)",
   }, // a style rule
-  label: {}, // a nested style rule
 });
 
 export default function SimpleContainer() {

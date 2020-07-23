@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 import Home from "./pages/Home";
@@ -11,37 +11,48 @@ import Login from "./pages/Login";
 import ResponsiveDrawer from "./components/Nav";
 import Footer from "./components/Footer";
 import { ProtectedRoute } from "./protectedRoute";
-import { UserProvider } from "./utils/UserContext";
+import { UserContext } from "./utils/UserContext";
+import API from "./utils/API";
 
 function App() {
+  const [, setUserState] = useContext(UserContext);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    API.isLoggedIn()
+      .then((res) => {
+        setUserState({
+          authenticated: true,
+          name: res.data.name,
+          email: res.data.email,
+          id: res.data._id,
+        });
+      })
+      .catch((err) => console.log(err))
+      .then((res) => setLoading(false));
+  }, []);
+
+  if (loading) {
+    return <p>Loading...</p>;
+  }
   return (
-    <UserProvider>
-      <Router>
-        <div>
-          <ResponsiveDrawer />
-          <Switch>
-            <Route exact path={["/", "/recipes"]}>
-              <Home />
-            </Route>
-            <Route exact path="/recipes/:id">
-              <RecipeDetails />
-            </Route>
-            <ProtectedRoute exact path="/favorites" component={Favorites} />
-            <ProtectedRoute exact path="/shopping" component={ShoppingList} />
-            <Route exact path="/signup">
-              <Signup />
-            </Route>
-            <Route exact path="/login">
-              <Login />
-            </Route>
-            <Route>
-              <NoMatch />
-            </Route>
-          </Switch>
-          <Footer />
-        </div>
-      </Router>
-    </UserProvider>
+    <Router>
+      <div>
+        <ResponsiveDrawer />
+        <Switch>
+          <Route exact path={["/", "/recipes"]} component={Home} />
+          <Route exact path="/recipes/:id">
+            <RecipeDetails />
+          </Route>
+          <ProtectedRoute exact path="/favorites" component={Favorites} />
+          <ProtectedRoute exact path="/shopping" component={ShoppingList} />
+          <Route exact path="/signup" component={Signup}></Route>
+          <Route exact path="/login" component={Login}></Route>
+          <Route component={NoMatch}></Route>
+        </Switch>
+        <Footer />
+      </div>
+    </Router>
   );
 }
 

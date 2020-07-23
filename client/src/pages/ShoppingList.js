@@ -62,7 +62,7 @@ export default function TransferList() {
   const [left, setLeft] = React.useState([]);
   const [right, setRight] = React.useState([]);
   const [formObject, setFormObject] = useState({});
-  const [userState, setUserState] = useContext(UserContext);
+  const [userState] = useContext(UserContext);
 
   const numberOfChecked = (items) =>
     items.map((x) => x.checked).filter(Boolean).length;

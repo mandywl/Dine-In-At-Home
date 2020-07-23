@@ -53,7 +53,7 @@ export default function Recipes({ recipe }) {
   const [open, setOpen] = React.useState(false);
   const [placement, setPlacement] = React.useState();
   const [added, setAdded] = useState(false);
-  const [userState, setUserState] = useContext(UserContext);
+  const [userState] = useContext(UserContext);
   let history = useHistory();
 
   function checkAdded() {

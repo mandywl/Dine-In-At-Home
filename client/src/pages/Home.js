@@ -1,47 +1,30 @@
-import React, { useState, useContext, useEffect } from "react";
-import API from "../utils/API";
-import { UserContext } from "../utils/UserContext";
-import RecipesList from "../components/RecipesList";
-import Grid from "@material-ui/core/Grid";
+import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
+import Grid from "@material-ui/core/Grid";
+
+import API from "../utils/API";
+import RecipesList from "../components/RecipesList";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: 1200,
     margin: "0 auto",
-    minHeight: "calc(100vh - 250px)",
+    minHeight: "calc(100vh - 200px)",
   },
 }));
 
 export default function Home(props) {
-  const classes = useStyles();
+  const classNames = useStyles();
   const [results, setResults] = useState([]);
-  const [, setUserState] = useContext(UserContext);
-
-  const getRecipes = () => {
+  useEffect(() => {
     API.getRecipes()
       .then((res) => setResults(res.data))
       .catch((err) => console.log(err));
-  };
-
-  useEffect(() => {
-    API.isLoggedIn()
-      .then((res) => {
-        console.log("res is", res.data);
-        setUserState({
-          authenticated: true,
-          name: res.data.name,
-          email: res.data.email,
-          id: res.data._id,
-        });
-      })
-      .catch((err) => console.log(err));
-    getRecipes();
   }, []);
 
   return (
     <>
-      <Grid container justify="center" className={classes.root}>
+      <Grid container justify="center" className={classNames.root}>
         <RecipesList results={results} />
       </Grid>
     </>
