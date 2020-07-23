@@ -10,7 +10,6 @@ import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 import ResponsiveDrawer from "./components/Nav";
 import Footer from "./components/Footer";
-import { ProtectedRoute } from "./protectedRoute";
 import { UserContext } from "./utils/UserContext";
 import API from "./utils/API";
 
@@ -62,8 +61,8 @@ function App() {
           <Route exact path="/recipes/:id">
             <RecipeDetails />
           </Route>
-          <ProtectedRoute exact path="/favorites" component={Favorites} />
-          <ProtectedRoute exact path="/shopping" component={ShoppingList} />
+          <Route exact path="/favorites" component={Favorites} />
+          <Route exact path="/shopping" component={ShoppingList} />
           <Route exact path="/signup" component={Signup}></Route>
           <Route exact path="/login" component={Login}></Route>
           <Route component={NoMatch}></Route>
