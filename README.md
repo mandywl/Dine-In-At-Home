@@ -7,7 +7,7 @@
 ### 🏠 [Deployed Url](https://dine-in-at-home.herokuapp.com/)
 
 <div align="center">
-<img alt="Dine In At Home" src= "appScreenCapture.gif" width= 60%/>
+<img alt="Dine In At Home" src= "" width= 60%/>
 </div>
 
 ## Install
