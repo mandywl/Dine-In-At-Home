@@ -68,7 +68,10 @@ function App() {
   return (
     <Router>
       <div>
-        <ResponsiveDrawer />
+        <ResponsiveDrawer
+          onClickFavorite={handleOnClickFavorite}
+          onClickShopping={handleOnClickShopping}
+        />
         <Switch>
           <Route exact path={["/", "/recipes"]} component={Home} />
           <Route exact path="/recipes/:id">
