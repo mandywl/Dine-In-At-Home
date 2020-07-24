@@ -17,6 +17,16 @@ function App() {
   const [, setUserState] = useContext(UserContext);
   const [loading, setLoading] = useState(true);
 
+  const handleOnClickFavorite = () => {
+    console.log("HIiiiiiiii");
+    window.location.replace("/favorites");
+  };
+
+  const handleOnClickShopping = () => {
+    console.log("HIiiiiiiii");
+    window.location.replace("/shopping");
+  };
+
   useEffect(() => {
     API.isLoggedIn()
       .then((res) => {
@@ -35,7 +45,10 @@ function App() {
     return (
       <Router>
         <div>
-          <ResponsiveDrawer />
+          <ResponsiveDrawer
+            onClickFavorite={handleOnClickFavorite}
+            onClickShopping={handleOnClickShopping}
+          />
           <Switch>
             <Route exact path={["/", "/recipes"]} component={Home} />
             <Route exact path="/recipes/:id">

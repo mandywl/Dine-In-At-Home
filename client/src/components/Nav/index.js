@@ -246,7 +246,12 @@ function ResponsiveDrawer(props) {
                   <img src={logo} alt="logo" className={classes.logo} />
                 </Toolbar>
                 <Tab component={Link} label="Recipes" to="/" />
-                <Tab component={Link} label="Shopping List" to="/shopping" />
+                <Tab
+                  component={Link}
+                  onClick={props.onClickShopping}
+                  label="Shopping List"
+                  to="/shopping"
+                />
                 {/* <Tab label="Contact Me" /> */}
               </Tabs>
             </Grid>
@@ -298,6 +303,7 @@ function ResponsiveDrawer(props) {
                 <Tab
                   component={Link}
                   icon={<FavoriteIcon />}
+                  onClick={props.onClickFavorite}
                   className={classes.icons}
                   aria-label="favorite"
                   to="/favorites"
