@@ -377,6 +377,74 @@ const recipeSeed = [
       },
     ],
   },
+  {
+    title: "Molten Choc-Chunk Brownies",
+    description: "Ready in 60 minutes and serves 5 people",
+    ingrediates: [
+      {
+        ingredient1: "1 cup PLAIN FLOUR",
+        ingredient2: "3/4 cups COCOA",
+        ingredient3: "3/4 cups BROWN SUGAR",
+        ingredient4: "1 1/2 cups CASTER SUGAR",
+        ingredient5: "175g UNSALTED BUTTER",
+        ingredient6: "1 tsp VANILLA EXTRACT",
+        ingredient7: "3 EGGS",
+        ingredient8: "125g DARK CHOCOLATE",
+      },
+    ],
+    thumbnail: "teriyakiBeef.73b2021c.jpg",
+    method: [
+      {
+        first:
+          "1. Place the flour, cocoa, both the sugars, the butter, vanilla and eggs in a large bowl and mix until smooth.",
+        second: "2. Add the chocolate and stir to combine.",
+        thrid: "3. Preheat oven to 160°C",
+        fourth:
+          "4. Lightly grease a 20cm square tin and line with non-stick baking paper.",
+        fifth: "5. Spread the mixture into the tin.",
+        sixth: "6. Bake for 50 minutes – 1 hour or until the brownie is set.",
+        seventh:
+          "7. Allow to cool in the tin for 5 minutes before slicing into squares and serving warm, or allow to cool completely in the tin",
+      },
+    ],
+  },
+  {
+    title: "Mac N cheese ",
+    description: "Ready in 35 minutes and serves 5 people",
+    ingrediates: [
+      {
+        ingredient1: "2 cups MACARONI PASTA",
+        ingredient2: "1 BROWN ONION",
+        ingredient3: "1/2 bag BABY SPINACH",
+        ingredient4: "1 TOMATO",
+        ingredient5: "¾ cups FROZEN PEAS",
+        ingredient6: "1 tsp Salt",
+        ingredient7: "4 Tbsp BUTTER",
+        ingredient8: "3 cups MILK",
+        ingredient8: "2 tsp WHOLE GRAIN MUSTARD",
+        ingredient8: "1 1/4 cups GRATED CHEESE",
+        ingredient8: "4 Tbsp FLOUR",
+        ingredient8: "1 Tbsp BUTTER",
+        ingredient8: "½ Cup PANKO BREADCRUMBS",
+        ingredient8: "½ Tbsp Herbs",
+      },
+    ],
+    thumbnail: "teriyakiBeef.73b2021c.jpg",
+    method: [
+      {
+        first:
+          "1. Prepare oven to 200c. Bring a large pot of salted water to the boil. Cook pasta in boiling water for six to 8 minutes, staring occasionally, until just tender. Drain and run under cold water slightly. Toss with a little olive oil so it doesn't stick together.",
+        second: "2. Finely diced onion, roughly chop spinach and dice tomato.",
+        thrid:
+          "3. Heat drizzle of oil in a large frying pan on medium heat. Cook onion for about 3 minutes, until tender. Add peas salt and cook for another 2 minutes. Remove from the heat and stir fruit spinach and tomato. Set aside.",
+        fourth:
+          "4. Melt first measure of butter in a medium pot on low heat. Stir in flour and combine cooking for two to three minutes, gradually whisk in milk, stirring occasionally. Bring to a gentle simmer and cook for two to three minutes, until thickened, stirring frequently. Add mustard, salt and season to taste.",
+        fifth:
+          "5. Combine pasta with veggies, sauce and grated cheese and pour into a large baking dish. In a small bowl melt second measure of butter, mix with breadcrumbs and paprika. Sprinkle over pasta and bake for five minutes, turn to grill on high for 2 minutes until golden.",
+        sixth: "6. To serve divide mac n cheese between plates.",
+      },
+    ],
+  },
 ];
 
 db.Recipe.remove({})
