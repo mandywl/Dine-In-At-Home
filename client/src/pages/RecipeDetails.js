@@ -17,6 +17,8 @@ import crispyJapaneseChicken from "../assets/img/crispyJapaneseChicken.jpg";
 import teriyakiBeef from "../assets/img/teriyakiBeef.jpg";
 import fishCurry from "../assets/img/fishCurry.jpg";
 import beefRumpSteaks from "../assets/img/beefRumpSteaks.jpg";
+import macNCheese from "../assets/img/macNCheese.jpeg";
+import chocBrownies from "../assets/img/chocBrownies.jpg";
 
 const useStyles = makeStyles((theme) => ({
   root: {

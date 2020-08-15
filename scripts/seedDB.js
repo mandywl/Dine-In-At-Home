@@ -392,7 +392,7 @@ const recipeSeed = [
         ingredient8: "125g DARK CHOCOLATE",
       },
     ],
-    thumbnail: "teriyakiBeef.73b2021c.jpg",
+    thumbnail: "chocBrownies.fc7a9ae7.jpg",
     method: [
       {
         first:
@@ -429,7 +429,7 @@ const recipeSeed = [
         ingredient8: "½ Tbsp Herbs",
       },
     ],
-    thumbnail: "teriyakiBeef.73b2021c.jpg",
+    thumbnail: "macNCheese.f2d11eec.jpeg",
     method: [
       {
         first:
