@@ -25,7 +25,7 @@ export default function Footer() {
         by &nbsp;
         <a
           className="contactLink"
-          href="https://mandy-wellslakeland.herokuapp.com/"
+          href="https://mandy-portfolio.vercel.app"
           target="_blank"
           rel="noopener noreferrer"
         >
