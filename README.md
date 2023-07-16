@@ -71,7 +71,7 @@
 
 👤 **Mandy Wells-Lakeland**
 
-- Website: https://mandy-wellslakeland.herokuapp.com/
+- Website: https://mandy-portfolio.vercel.app
 - Github: [@mandywl](https://github.com/mandywl)
 - LinkedIn: [@mandywellslakeland](https://www.linkedin.com/in/mandywellslakeland/)
 
